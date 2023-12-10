@@ -1,1096 +1,667 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WRFCYH3ZEX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bison Labs</title>
+<link rel="stylesheet" href="style.css"> 
+<link rel="icon" type="image/x-icon" href="/bison_landing_page/bionlogobetter.ico">
+<link rel="icon" type="image/x-icon" href="images/art2.jpg">
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .header { text-align: left; padding: 50px; color: white; transition: background 1s ease-in-out; }
+    .header h1 { font-size: 72px; margin: 0; }
+    .header h2 { font-size: 48px; margin: 0; }
+    .content { margin: 20px; }
+    .button { display: inline-block; margin: 20px; padding: 10px 20px; background: #000; color: #fff; text-decoration: none; }
+    /* Initial background gradient */
+    .header { background: linear-gradient(to left, #FF8008, #FFC837); }
 
-    gtag('config', 'G-WRFCYH3ZEX');
-  </script>
-  <meta charset="utf-8" />
-  <title>Bison Labs</title>
-  <link rel="stylesheet" href="css/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="css/bison-2023.d8e0d02d3.css" />
-  <link rel="icon" type="image/x-icon" href="images/art2.jpg">
+  .section {
+      background-color: #000; /* Dark background for the section */
+      color: white; /* Text color */
+      padding: 50px 0; /* Padding for the section */
+      text-align: center; /* Centering text */
+  }
 
-  <style>
-    .section-loader {
+  .feature-cards {
+      display: flex;
+      justify-content: space-around; /* Spacing around the cards */
+      flex-wrap: wrap; /* Wrap the cards for responsiveness */
+  }
+
+  .card {
+      background-color: #222; /* Card background */
+      padding: 20px; /* Padding inside the cards */
+      margin: 10px; /* Margin around the cards */
+      width: calc(25% - 20px); /* Card width, adjusting for margin */
+      box-sizing: border-box; /* Include padding and border in the width */
+  }
+
+  .card img {
+      width: 50px; /* Example size for icons */
+      margin-bottom: 20px; /* Space below the icons */
+  }
+
+  .card h3 {
+      margin-top: 0; /* Remove top margin from headings */
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 1024px) {
+      .card {
+          width: calc(50% - 20px); /* Adjust card width for medium screens */
+      }
+  }
+
+  @media (max-width: 768px) {
+      .card {
+          width: calc(50% - 20px); /* Adjust card width for smaller screens */
+      }
+  }
+
+  @media (max-width: 480px) {
+      .card {
+          width: 100%; /* Full width cards on very small screens */
+      }
+  }
+
+  /* Style for the horizontal line */
+  .hr-style {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+      margin: 40px 0; /* Adjust the margin to increase/decrease spacing */
+  }
+
+  /* Style for the section title */
+  .section-title {
+      color: white; /* Or the color you want for the text */
+      font-size: 2em; /* Adjust size as needed */
+      margin: 20px 0; /* Space above and below the title */
+      text-align: center; /* Center the title */
+  }
+  /* ... previous styles ... */
+
+  /* ... other styles ... */
+
+  .split-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background-color: black; /* Background for the entire section */
+      color: white; /* Text color for the entire section */
+  }
+
+  .text-side {
+      flex: 1; /* Allows the text side to fill half the space */
+      padding-right: 20px; /* If you need spacing between the text and the card */
+  }
+
+  .info-card {
+      flex: 1; /* Take up the other half */
+      background-color: #000; /* Darker background for the card */
+      padding: 20px;
+      margin-left: 20px; /* Add some spacing between the text and the card */
+  }
+
+  .info-card h2 {
+      font-size: 2em; /* Large font size for the title */
+      margin-bottom: 0.5em;
+  }
+
+  .data-note {
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin-top: 10px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .split-section {
+          flex-direction: column;
+          text-align: center;
+      }
+
+      .info-card {
+          margin-left: 0;
+          margin-top: 20px;
+      }
+  }
+  /* ... previous styles ... */
+
+  .split-screen {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background-color: black; /* Or any color you want for the background */
+      color: white;
+  }
+
+  .left-card {
+    flex-basis: 50%; /* Takes up half the width */
+    background: linear-gradient(to bottom, #f7931a, #b84a00); /* Gradient from light to dark Bitcoin orange */
+    color: white;
+    padding: 40px;
+    text-align: center; /* Center the content horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally for each flex item */
+    height: 100%; /* Ensure the card stretches to the full height of its container */
+}
+
+
+.statistic {
+    font-size: 5em; /* Large font size for the statistic */
+    margin-bottom: 0.2em;
+}
+
+.dollar-sign {
+    font-size: 0.6em; /* Smaller font size for the dollar sign */
+    vertical-align: super; /* Align the dollar sign with the top of the numbers */
+}
+
+.label {
+    font-size: 2em; /* Large font size for the label */
+    margin-bottom: 0.5em;
+}
+
+.date {
+    font-size: 0.8em; /* Smaller font size for the date */
+    margin-top: 20px; /* Space from the label */
+}
+
+
+  .right-text {
+      flex-basis: 50%; /* Takes up the other half */
+      padding: 0 50px; /* Padding on the sides */
+  }
+
+  .right-text h2 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+  }
+
+  .right-text p {
+      font-size: 1em;
+  }
+
+  /* ... more styles ... */
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .split-screen {
+          flex-direction: column;
+      }
+
+      .left-card, .right-text {
+          flex-basis: 100%; /* Full width on small screens */
+          padding: 20px; /* Reduced padding on small screens */
+      }
+
+      .date {
+          position: static; /* Static position on small screens */
+          margin-top: 20px; /* Space from the label */
+      }
+  }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .top-nav {
+      background: linear-gradient(to left, #FF8008, #FFC837); /* New gradient background */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .top-nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+  }
+
+  /* ... more of the provided styles ... */
+
+  .bg-clip-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+    .split-screen {
+        display: flex;
+        padding: 50px;
+        background-color: black; /* Or any color you want for the background */
+        color: white;
+        align-items: flex-start; /* Aligns the content to the top */
+        flex-wrap: wrap; /* Ensures content wraps on smaller screens */
+    }
+
+    .left-content, .right-content {
+        flex-basis: 50%; /* Takes up half the width on larger screens */
+        padding: 20px; /* Padding around content */
+        box-sizing: border-box; /* Includes padding in the width calculation */
+    }
+
+    .button {
+        padding: 10px 20px; /* Padding inside the button */
+        border: 100px solid #fff; /* White border */
+        color: #fff; /* White text */
+        background: transparent; /* Transparent background */
+        text-decoration: none; /* Removes underline from text */
+        font-size: 16px; /* Adjust the font size as needed */
+        cursor: pointer; /* Changes cursor to pointer on hover */
+        display: inline-block; /* Allows the button to be inline but also have padding */
+        margin-top: 10px; /* Margin above the button */
+        text-align: center; /* Centers text within the button */
+        transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+        border-radius: 5px; /* Rounded corners, adjust as needed */
+    }
+
+    .button:hover {
+        background-color: #fff; /* White background on hover */
+        color: #000; /* Black text on hover */
+    }
+
+    @media (max-width: 768px) {
+        .left-content, .right-content {
+            flex-basis: 100%; /* Full width on smaller screens */
+        }
+    }
+    .heading {
+        color: white;
+        font-size: 4em; /* You may adjust this as needed to fit your design */
+        text-align: left;
+        line-height: 1.2; /* Increase line-height to add more space between lines */
+        letter-spacing: -2px; /* Adjust letter-spacing to fine-tune the spacing between letters */
+        word-wrap: break-word;
+        max-width: fit-content;
+        margin: 0 auto; /* Centers the heading if the parent container has a defined width */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+        .heading {
+            font-size: 2em; /* Adjust font-size for smaller screens */
+            letter-spacing: -1px; /* Less spacing for smaller font sizes */
+        }
+    }
+
+    @media (min-width: 768px) {
+        .heading {
+            width: 60%; /* Adjust width on larger screens to control word wrapping */
+        }
+    }
+
+    .content-section {
+        background-color: #000; /* Adjust the background color as needed */
+        color: white; /* Text color */
+        padding: 40px; /* Padding for the section */
+    }
+
+    .text-content {
+        text-align: left; /* Correct text alignment */
+        margin-bottom: 20px; /* Space between text content and the image */
+    }
+
+    .text-content h1 {
+        font-size: 2.5em; /* Large font size for the heading */
+    }
+
+    .text-content p {
+        font-size: 1em; /* Adjust the font size for the paragraph as needed */
+    }
+
+    .text-content .button {
+        padding: 10px 20px;
+        border: 2px solid #fff;
+        color: #fff;
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 20px;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+    .text-content .button:hover {
+        background-color: #fff;
+        color: #000;
+        transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+    }
+    /* Styling for the left content header */
+    .muneebhasnochance .left-content {
+      /* Ensure there's enough space at the bottom of the title */
+      margin-bottom: 40px; /* Adjust as needed */
+    }
+
+    .muneebhasnochance .left-content h1 {
+      color: white;
+      font-size: 4em;
+      text-align: left;
+      margin: 0; /* Remove margin from the h1 and control it via the parent container */
+    }
+
+    /* Styling for the right content paragraph */
+    .muneebhasnochance .right-content {
+      /* Ensure there's enough space at the top of the paragraph */
+      margin-top: 40px; /* Adjust as needed */
+      max-width: 600px;
+    }
+
+    .muneebhasnochance .right-content p {
+      color: white;
+      font-size: 1.25em;
+      text-align: left;
+      margin: 0; /* Remove margin from the p and control it via the parent container */
+    }
+
+    /* Button styling */
+    .muneebhasnochance .read-more-button button {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      text-align: left;
       display: block;
     }
 
-    .play_inner-list {
-      opacity: 0;
+    /* Flexbox approach for split section */
+    .muneebhasnochance .split-section {
+      display: flex;
+      flex-direction: row; /* Adjust to column for smaller screens as needed */
+      justify-content: space-between; /* This separates left and right content */
+      align-items: flex-start; /* Aligns items to the start of the flex container */
     }
-  </style>
 
-  <script defer type="text/javascript" src="js/pirsch.js" id="pirschjs"
-    data-code="DYOE3R6PwjtYOURPkmDUTm0Q7KZPJxH5"></script>
-</head>
-
-<body data-barba="wrapper">
-  <div class="global-styles w-embed">
-    <style>
-      html {
-        scroll-behavior: initial;
-        font-size: calc(11px + 0.3vw);
+    /* Responsive adjustments using media queries */
+    @media (max-width: 768px) {
+      .muneebhasnochance .split-section {
+        flex-direction: column;
+        align-items: stretch; /* Stretch children to full width */
       }
 
-      @media screen and (max-width: 1440px) {
-        html {
-          font-size: 1.111vw;
-        }
+      .muneebhasnochance .left-content,
+      .muneebhasnochance .right-content {
+        margin-bottom: 20px; /* Provide space between stacked elements */
+        margin-top: 0; /* Reset top margin for the right content */
+        width: 100%; /* Full width for smaller screens */
+        padding: 0 10px; /* Adjust padding for smaller screens */
       }
 
-      @media screen and (max-width: 992px) {
-        html {
-          font-size: 1.3vw;
-        }
+      .muneebhasnochance .left-content h1,
+      .muneebhasnochance .right-content p {
+        margin-bottom: 20px; /* Adjust the space for smaller screens if needed */
+        margin-top: 20px; /* Adjust the space for smaller screens if needed */
       }
+    }
 
-      @media screen and (max-width: 767px) {
-        html {
-          font-size: 2vw;
-        }
-      }
+    .full-width-image {
+        width: 100%; /* Full width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensures it takes up the full width */
+        margin-top: 20px; /* Space between the image and the text content */
+    }
 
-      @media screen and (max-width: 479px) {
-        html {
-          font-size: 3.5vw;
-        }
-      }
-
-      html,
-      body {
-        width: 100%;
-        min-height: 100%;
-        font-smoothing: antialised;
-      }
-
-      /* Make text look crisper and more legible in all browsers */
-      body {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-      }
-
-      /* Focus state style for keyboard navigation for the focusable elements */
-      *[tabindex]:focus-visible,
-      input[type="file"]:focus-visible {
-        outline: 0.125rem solid #4d65ff;
-        outline-offset: 0.125rem;
-      }
-
-      /* --------------------------------------------------------------------------------- 
---------------------------------------------------------------------------------- 
-
-															PROJECT RICH TEXT START
-
---------------------------------------------------------------------------------- */
-
-      /* Image Right */
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatright {
-        float: none;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-gap: 2rem;
-        max-width: none;
-        margin-left: 0;
-      }
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatright>div {
-        grid-column: 4/9;
-        grid-row: 1;
-      }
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatright>figcaption {
-        grid-column: 1/4 !important;
-        grid-row: 1;
-        margin-top: auto;
-        vertical-align: bottom;
-        text-align: left;
-        padding-right: 3.5rem;
-      }
-
-      /* Image Left */
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatleft {
-        float: none;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-gap: 2rem;
-        max-width: none;
-        margin: 0;
-      }
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatleft>div {
-        grid-column: 1/6;
-        grid-row: 1;
-      }
-
-      .project_rich-text.w-richtext figure.w-richtext-align-floatleft>figcaption {
-        grid-column: 6/9 !important;
-        grid-row: 1;
-        margin-top: auto;
-        vertical-align: bottom;
-        text-align: left;
-        padding-left: 3.5rem;
-      }
-
-      @media screen and (max-width: 800px) {
-        .project_rich-text.w-richtext figure.w-richtext-align-floatright>figcaption {
-          padding-right: 0;
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .text-content {
+            text-align: center; /* Center the text on smaller screens */
         }
 
-        .project_rich-text.w-richtext figure.w-richtext-align-floatleft>figcaption {
-          padding-left: 0;
+        .text-content .button {
+            margin: 20px auto; /* Center the button on smaller screens */
+            display: block; /* Make the button block level so it centers nicely */
         }
-      }
-
-      @media screen and (max-width: 767px) {
-        .project_rich-text.w-richtext figure.w-richtext-align-floatleft>div {
-          grid-column: 1/12;
-        }
-
-        .project_rich-text.w-richtext figure.w-richtext-align-floatleft>figcaption {
-          grid-column: 1/12 !important;
-          grid-row: 2;
-        }
-
-        .project_rich-text.w-richtext figure.w-richtext-align-floatright>div {
-          grid-column: 1/12
-        }
-
-        .project_rich-text.w-richtext figure.w-richtext-align-floatright>figcaption {
-          grid-column: 1/12 !important;
-          grid-row: 2;
-        }
-      }
-
-      /* --------------------------------------------------------------------------------- 
-
-															PROJECT RICH TEXT END
-
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------*/
-
-      .modal,
-      .modal-contact,
-      .modal-nav,
-      .modal-projects {
-        pointer-events: none;
-      }
-
-      .modal.open,
-      .modal-contact.open,
-      .modal-nav.open,
-      .modal-projects.open {
-        pointer-events: unset;
-      }
-
-      /* Get rid of top margin on first element in any rich text element */
-      .w-richtext> :not(div):first-child,
-      .w-richtext>div:first-child> :first-child {
-        margin-top: 0 !important;
-      }
-
-      /* Get rid of bottom margin on last element in any rich text element */
-      .w-richtext>:last-child,
-      .w-richtext ol li:last-child,
-      .w-richtext ul li:last-child {
-        margin-bottom: 0 !important;
-      }
-
-      /* Prevent all click and hover interaction with an element */
-      .pointer-events-off {
-        pointer-events: none;
-      }
-
-      /* Enables all click and hover interaction with an element */
-      .pointer-events-on {
-        pointer-events: auto;
-      }
-
-      /* Create a class of .div-square which maintains a 1:1 dimension of a div */
-      .div-square::after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
-      }
-
-      /* Make sure containers never lose their center alignment */
-      .container-medium,
-      .container-small,
-      .container-large {
-        margin-right: auto !important;
-        margin-left: auto !important;
-      }
-
-      /* 
-Make the following elements inherit typography styles from the parent and not have hardcoded values. 
-Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
-Uncomment this CSS to use it in the project. Leave this message for future hand-off.
-*/
-      /*
-a,
-.w-input,
-.w-select,
-.w-tab-link,
-.w-nav-link,
-.w-dropdown-btn,
-.w-dropdown-toggle,
-.w-dropdown-link {
-  color: inherit;
-  text-decoration: inherit;
-  font-size: inherit;
-}
-*/
-
-      /* Apply "..." after 3 lines of text */
-      .text-style-3lines {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-      }
-
-      /* Apply "..." after 2 lines of text */
-      .text-style-2lines {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-
-      /* Adds inline flex display */
-      .display-inlineflex {
-        display: inline-flex;
-      }
-
-      /* These classes are never overwritten */
-      .hide {
-        display: none !important;
-      }
-
-      @media screen and (max-width: 991px) {
-
-        .hide,
-        .hide-tablet {
-          display: none !important;
-        }
-      }
-
-      @media screen and (max-width: 767px) {
-        .hide-mobile-landscape {
-          display: none !important;
-        }
-      }
-
-      @media screen and (max-width: 479px) {
-        .hide-mobile {
-          display: none !important;
-        }
-      }
-
-      .margin-0 {
-        margin: 0rem !important;
-      }
-
-      .padding-0 {
-        padding: 0rem !important;
-      }
-
-      .spacing-clean {
-        padding: 0rem !important;
-        margin: 0rem !important;
-      }
-
-      .margin-top {
-        margin-right: 0rem !important;
-        margin-bottom: 0rem !important;
-        margin-left: 0rem !important;
-      }
-
-      .padding-top {
-        padding-right: 0rem !important;
-        padding-bottom: 0rem !important;
-        padding-left: 0rem !important;
-      }
-
-      .margin-right {
-        margin-top: 0rem !important;
-        margin-bottom: 0rem !important;
-        margin-left: 0rem !important;
-      }
-
-      .padding-right {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
-        padding-left: 0rem !important;
-      }
-
-      .margin-bottom {
-        margin-top: 0rem !important;
-        margin-right: 0rem !important;
-        margin-left: 0rem !important;
-      }
-
-      .padding-bottom {
-        padding-top: 0rem !important;
-        padding-right: 0rem !important;
-        padding-left: 0rem !important;
-      }
-
-      .margin-left {
-        margin-top: 0rem !important;
-        margin-right: 0rem !important;
-        margin-bottom: 0rem !important;
-      }
-
-      .padding-left {
-        padding-top: 0rem !important;
-        padding-right: 0rem !important;
-        padding-bottom: 0rem !important;
-      }
-
-      .margin-horizontal {
-        margin-top: 0rem !important;
-        margin-bottom: 0rem !important;
-      }
-
-      .padding-horizontal {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
-      }
-
-      .margin-vertical {
-        margin-right: 0rem !important;
-        margin-left: 0rem !important;
-      }
-
-      .padding-vertical {
-        padding-right: 0rem !important;
-        padding-left: 0rem !important;
-      }
-
-      .preview-image {
-        pointer-events: none;
-      }
-
-      .button {
-        vertical-align: middle;
-      }
-
-      input:focus~.floating-label,
-      input:not(:focus):valid~.floating-label,
-      input[type=email]:not(:placeholder-shown)~.floating-label,
-      textarea:focus~.floating-label,
-      textarea:not(:placeholder-shown)~.floating-label {
-        top: 0;
-        font-size: 12px;
-        margin-top: 0;
-      }
-
-      .input-text:focus {
-        outline: none;
-      }
-
-      .about-hero_embed {
-        clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%);
-      }
-
-      .iframe-parent {
-        position: relative;
-      }
-
-      .iframe-parent:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-      }
-
-      .image-wrap,
-      .home-services-block_inner {
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
-      }
-    </style>
-  </div>
-  <div class="header">
-    <div class="container-large">
-      <div class="header_inner">
-        <div class="grid">
-          <div id="w-node-_025ac0fe-91f4-33dd-4572-1145dd308196-dd308193" class="header_logo"><a href="index.html"
-              class="header_logo-link w-inline-block">
-              <div class="header_logo-inner w-embed">
-                <img src="images/logo-biopson.png" alt="">
-              </div>
-            </a></div>
-          <div id="w-node-_025ac0fe-91f4-33dd-4572-1145dd308198-dd308193" class="header_menu">
-            <ul role="list" class="header_menu-list">
-              <li class="header_menu-item"><a href="index.html" class="header_menu-link">Home</a></li>
-              <li class="header_menu-item"><a href="about.html" class="header_menu-link">About</a></li>
-              <li class="header_menu-item"><a href="" aria-current="page" class="header_menu-link w--current"></a></li>
-              <li class="header_menu-item"><a href="" class="header_menu-link"></a></li>
-              <li class="header_menu-item"><a href="" class="header_menu-link"></a></li>
-            </ul>
-            <div class="header_menu-toggle">
-              <div class="header_menu-icon w-embed"><svg style="vertical-align: middle;" width="11" height="6"
-                  viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.5 5.36914L1 5.36914" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                  <path d="M10.5 1.36914L1 1.36914" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg></div>
-            </div>
-          </div>
-          <div id="w-node-_025ac0fe-91f4-33dd-4572-1145dd3081a9-dd308193" class="header_button">
-            <div class="button-outer"><a data-w-id="942ab247-6669-6e1c-60bb-48f52d265858"
-                href="https://linktr.ee/bisonlabs" class="button is-icon w-inline-block">
-                <div class="button_inner">
-                  <div class="button_text">Early Adopter </div>
-                  <div class="button_icon w-embed"><svg style="vertical-align: middle;" width="100%" height="auto"
-                      viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10.5 5.36914L1 5.36914" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                      <path d="M6.20508 9.70724L10.5587 5.35362L6.20508 1" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    </svg></div>
-                </div>
-              </a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modals">
-      <div class="modal-nav">
-        <div class="modal-nav_inner">
-          <div class="modal-nav_content">
-            <div class="modal-nav_menu"><a href="index.html" class="modal-nav_menu-link w-inline-block">
-                <div>Home</div>
-              </a><a href="work.html" class="modal-nav_menu-link w-inline-block">
-                <div>Work</div>
-              </a><a href="services.html" aria-current="page" class="modal-nav_menu-link w-inline-block w--current">
-                <div>GM GM GM</div>
-              </a><a href="about.html" class="modal-nav_menu-link w-inline-block">
-                <div>About</div>
-              </a><a href="play.html" class="modal-nav_menu-link w-inline-block">
-                <div>Play</div>
-              </a><a id="btn-contact" href="contact.html" class="modal-nav_menu-link w-inline-block">
-                <div>Contact</div>
-              </a></div>
-            <div class="modal-nav_info"><a href="https://www.twitter.com/Bison_Labs" target="_blank"
-                class="modal-nav_info-link w-inline-block">
-                <div>Instagram</div>
-              </a><a href="https://www.twitter.com/Bison_Labs" target="_blank"
-                class="modal-nav_info-link w-inline-block">
-                <div>LinkedIn</div>
-              </a></div>
-          </div>
-        </div>
-        <div class="modal-nav_background"></div>
-      </div>
-      <div data-lenis-prevent="" class="modal">
-        <div class="modal_inner">
-          <div class="modal_close">
-            <div class="modal_close-icon w-embed"><svg style="vertical-align: middle;" width="100%" height="auto"
-                viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.1091 10.1089L3.3916 3.39136" stroke="black" stroke-linecap="round"
-                  stroke-linejoin="round" />
-                <path d="M10.1091 3.39161L3.3916 10.1091" stroke="black" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg></div>
-          </div>
-          <div class="modal_content">
-            <div class="modal_loader">
-              <h6>LOADING...</h6>
-            </div>
-          </div>
-        </div>
-        <div class="modal_background"></div>
-      </div>
-    </div>
-  </div>
-  <div data-barba="container" class="page-wrapper">
-    <main class="main-wrapper">
-      <div class="section-page-title">
-        <div class="margin-bottom margin-xxlarge">
-          <div class="container-large">
-            <div class="page-title_inner">
-              <div class="grid">
-                <div id="w-node-f163ae3f-6648-fa30-2dac-188a49917ef4-34eb2573" class="page-title_title">
-                  <h1>BRC-20 Trading <br />Is Now 600x Faster</h1>
-                </div>
-                <div id="w-node-_2e08983e-5250-435a-cd94-f03da0984345-34eb2573" class="page-title_content">
-                  <p class="text-size-large"><span class="text-color-white">Pioneering a zk-rollup on native Bitcoin to revolutionize DeFi, offering unparalleled speed and security in trading.
-                    <a href="#"></a>
-                  </p>
-                  <iframe src="https://blocksurvey.io/utv0ooIdQ4CnTjiGrmZeXg-o" style="width:100%; height:30vh;"
-                    frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <div data-w-id="7a034e7e-ed67-77b2-f724-7a092155d2f5" class="wrapper-work-blocks">
-      <div class="w-dyn-list">
-        <div role="list" class="w-dyn-items">
-          <div role="listitem" class="section-work-block w-dyn-item">
-            <div class="container-large">
-              <div class="margin-bottom margin-xhuge">
-                <div class="work-block_inner">
-                  <div class="grid">
-                    <div id="w-node-_9eac2131-dce1-2fd5-9bce-1fb42f59f469-34eb2573" class="work-block_content">
-                      <div class="work-block_content-icon">
-                        <!-- <img src="https://assets.website-files.com/6388b5dc76d96e9abf6cbfbf/6402099b7aca2bc108d4770a_Strategy.svg" loading="lazy" alt="Strategy"/> -->
-                      </div>
-                      <h1 class="work-block_content-title">Trade Easily</h1>
-                      <div class="work-block_content-text">
-                        <p class="text-size-medium">With Bison's Automated Market Maker for BRC-20s, buying and selling
-                          is always on. No waiting, no delays. It's like a market that never sleeps, ready for you 24/7.
-                          Simple and convenient.
-                        </p>
-                      </div>
-                      <div class="button-outer"><a href="service/strategy.html"
-                          class="button-link is-icon w-inline-block">
-                          <div class="button-link_inner">
-                            <div class="button_text"></div>
-                            <div class="button-link_line"></div>
-                          </div>
-                          <div <path d="M10.5 5.36914L1 5.36914" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                          <path d="M6.20508 9.70724L10.5587 5.35362L6.20508 1" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                          </svg></div></a>
-                    </div>
-                  </div>
-                  <div id="w-node-_41f8ea73-7a85-14fe-608b-67b935edc98e-34eb2573" class="work-block_image"><a
-                      id="w-node-_83d5c02b-0e0c-d559-54f7-9ebda1e886a9-34eb2573" href="service/strategy.html"
-                      class="w-inline-block"><img src="images/icon1.png" loading="lazy" alt=""
-                        class="work-block_image-icon" /><img src="images/art1.jpg" loading="lazy" alt="Strategy"
-                        class="work-block_image-bg" /></a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--</div> -->
-        <!-- </div></div> -->
-        <!-- </div></div> -->
-        <!-- <div role="listitem" class="section-work-block w-dyn-item"> -->
-        <!-- <div class="container-large"><div class="margin-bottom margin-xhuge"><div class="work-block_inner"><div class="grid"><div id="w-node-_9eac2131-dce1-2fd5-9bce-1fb42f59f469-34eb2573" class="work-block_content"> -->
-        <!-- <div class="work-block_content-icon"> -->
-        <!-- <img src="https://assets.website-files.com/6388b5dc76d96e9abf6cbfbf/640209a88ebc1ed13ce51835_Development.svg" loading="lazy" alt="Development"/> -->
-        <!-- </div> -->
-
-        <!-- <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.team-section {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  /* background-color: #f0f0f0; */
-  width: 1200px !important; 
-  max-width: 1200px; /* You can adjust this value as needed to limit the max width of the team section */
-  margin: 0 auto; /* Center the team section horizontally */
-}
-
-.team-member {
-  text-align: center;
-}
-
-.team-member img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.team-member h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.team-member p {
-  margin: 5px 0;
-  color: #555;
-}
-
-
+    }
+    
 </style>
-<h1 class="work-block_content-title">The Team</h1>
-
-<div class="team-section">
-  <div class="team-member">
-    <img src="emp1.jpg" alt="Team Member 1">
-    <h3>Charlie</h3>
-    <p>CEO</p>
+</head>
+<body>
+  <header class="relative">
+    <nav class="top-nav" id="myTopNav">
+        <div>
+            <img src="logo.png" alt="BASE logo" style="height: 50px;">
+        </div>
+        <div class="nav-links">
+            <!-- Container for navigation links -->
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Ecosystem</a>
+            <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Developers</a>
+            <a href="https://linktr.ee/bisonlabs">About</a>
+        </div>
+        <!-- Hamburger icon -->
+        <a href="javascript:void(0);" class="icon" onclick="openMenu()">&#9776;</a>
+      </nav>
+    <div class="header" id="header">
+        <h1>BUILD</h1>
+        <h2 id="dynamicWord" class="bg-clip-text">STABLECOINS</h2>
+        <h1>ON BISON</h1>
+        <p>A Zero-Knowledge Rollup built on Native Bitcoin, enhancing scalability and programmability for the Bitcoin ecosystem.</p>
+        <a href="https://dmaster-1.gitbook.io/bisonlabs/" class="button">Read the docs</a>
+        <a href="http://testnet.bisonlabs.io/bridge" class="button">Bridge assets</a>
+    </div>
+</header>
+<!-- Add this HTML at the top of your <body> or right after the <header> -->
+  <!-- Overlay Menu Start -->
+<div id="menuOverlay" class="menu-overlay">
+  <!-- Close button -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+  
+  <!-- Overlay Content -->
+  <div class="overlay-content">
+    <a href="https://dmaster-1.gitbook.io/bisonlabs/">Ecosystem</a>
+    <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+    <a href="https://dmaster-1.gitbook.io/bisonlabs/">Developers</a>
+    <a href="https://linktr.ee/bisonlabs">About</a>
   </div>
-  <div class="team-member">
-    <img src="emp2.jpg" alt="Team Member 2">
-    <h3>Jay</h3>
-    <p>CTO</p>
-  </div>
-  <div class="team-member">
-    <img src="emp3.jpg" alt="Team Member 3">
-    <h3> Jake</h3>
-    <p>COO</p>
+    
+    <!-- Social Links -->
+    <div class="social-icons">
+      <a href="https://discord.com/Wr26ZV2fak" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-discord.svg" alt="Discord Icon"/>
+      </a>
+      <a href="https://dmaster-1.gitbook.io/bisonlabs/" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-github.svg" alt="GitHub Icon"/>
+      </a>
+      <a href="https://twitter.com/bison_labs" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-twitterx.svg" alt="TwitterX Icon"/>
+      </a>
+    </div>
   </div>
 </div>
-
-</div> -->
-
-        <!-- <div id="w-node-_41f8ea73-7a85-14fe-608b-67b935edc98e-34eb2573" class="work-block_image">
-  <a id="w-node-_83d5c02b-0e0c-d559-54f7-9ebda1e886a9-34eb2573" href="service/development.html" class="w-inline-block">
-<img src="https://assets.website-files.com/6388b5dc76d96e9abf6cbfbf/640389cb27be9b5ad0ba5ee2_development.svg" loading="lazy" alt="Development" class="work-block_image-icon"/>
-<img src="https://assets.website-files.com/6388b5dc76d96e9abf6cbfbf/640655dda37a65496152ef66_Development_ServicePreview.webp" loading="lazy" alt="Development" class="work-block_image-bg"/>
-</a>
-</div> -->
-        <!-- </div> -->
-        <!-- </div> -->
+<!-- Overlay Menu End -->
+<!-- New section with black background -->
+<div class="section">
+    <!-- Line at the top of the section -->
+    <div class="custom-line"></div>
+  <hr class="hr-style">
+    <h2>Adding Functionality to Native Bitcoin</h2>
+    <div class="feature-cards">
+      <div class="card">
+          <img src="bitcoin (1).png" alt="Bitcoin L2">
+          <h3>ZK-rollup on Native Bitcoin</h3>
+          <p class="paragraph-space">Utilizing sovereign-style blockchain technology, Bison Labs offers a secure, decentralized platform, overcoming traditional Bitcoin ecosystem limitations. Our focus is on delivering a high-speed, efficient, and secure transaction environment, propelling the future of native Bitcoin transactions.</p>
       </div>
+      <div class="card">
+          <img src="innovation.png" alt="Speed & Security"> 
+          <h3>Defi on Bitcoin</h3>
+          <p class="paragraph-space">Bison aims to redefine the decentralized finance (DeFi) ecosystem by tapping into the untapped potentials of Bitcoin— the most decentralized, secure, and reliable blockchain in the world. Bison introduces smart contract functionalities to Bitcoin without necessitating any alterations to the existing blockchain.</p>
+      </div>
+      <div class="card">
+          <img src="man.png" alt="Zk-Stark X Ordinals">
+          <h3>ZK-Stark x Ordinals</h3>
+          <p class="paragraph-space">Zk-STARKs provide Bison with enhanced privacy and scalability through advanced cryptographic proofs, enabling efficient, secure transaction verification without revealing sensitive data. Ordinals allow Bison to execute complex smart contracts and decentralized applications (dApps) directly on the Bitcoin blockchain while leveraging Bitcoin's inherent security.</p>
+      </div>
+      <div class="card">
+          <img src="function.png" alt="Bitcoin Native Functioanlity">
+          <h3>Community & Developers</h3>
+          <p class="paragraph-space">Bison Labs is committed to empowering developers to build in the Bitcoin space. Our platform is ready for developers to create innovative applications, supported by essential tools and resources. We actively assist developers in bringing their projects to fruition. If you're ready to build on Bitcoin's robust foundation, reach out to us at contact@bisonlabs.io</p>
+      </div>
+  </div>
+  
+  <style>
+      .paragraph-space {
+          margin-top: 10px; /* Adjust the value to control the space between the header and paragraph */
+      }
+  </style>  
+  <div class="section">
+    <div class="custom-line"></div>
+    <hr class="hr-style">
+    <div class="split-section">
+      <div class="text-side">
+        <h1 style="margin-bottom: 24px;">Bitcoin Principles but Faster and 76x Cheaper</h1> <!-- Added margin-bottom -->
+        <p>Bison enables smart contract functionality with no code changes needed to Bitcoin. On average Bison reduces costs by 76x for users.</p>
+      </div>
+      <div class="info-card">
+        <h2>Build Anything on Bitcoin</h2>
+        <!-- Insert the GIF using an img tag -->
+        <img src="https://cdnb.artstation.com/p/assets/images/images/036/871/229/original/david-haubner-bitcoin-new.gif?1618858774" alt="Bitcoin Animation" style="max-width:50%; height:auto;">
+        <p class="data-note">In Bitcoin We Trust.</p>
+    </div>    
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-  <div class="main-wrapper">
-    <div class="footer">
-      <div class="container-large">
-        <div class="footer_inner">
-          <div id="w-node-a5d7729a-ba6e-8625-1a5c-794642d9767f-42d9767c" class="footer_cta">
-            <h1 class="footer_cta-title">Let&#x27;s build<br />together</h1>
-            <div class="footer_clutch">
-              <div class="footer_clutch-stars w-embed">
-              </div>
-
+</div>
+    <div class="custom-line"></div>
+    <hr class="hr-style" style="margin-top: 40px;">
+    <div class="split-section">
+        <div class="left-card">
+            <div class="statistic">
+                <span class="dollar-sign"></span> Build Anything on Bitcoin
             </div>
-            <div class="footer_cta-button">
-              <div class="button-outer">
-                <a href="https://blocksurvey.io/utv0ooIdQ4CnTjiGrmZeXg-o" class="button is-icon is-large w-inline-block">
-                  <div class="button_inner">
-                    <div class="button_text is-large">Early Adopter</div>
-                    <div class="button_icon is-large w-embed"><svg style="vertical-align: middle;" width="100%"
-                        height="auto" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.5 5.36914L1 5.36914" stroke="currentColor" stroke-linecap="round"
-                          stroke-linejoin="round" />
-                        <path d="M6.20508 9.70724L10.5587 5.35362L6.20508 1" stroke="currentColor"
-                          stroke-linecap="round" stroke-linejoin="round" />
-                      </svg></div><blocksurvey-widget origin="blocksurvey.io" uid="p" sid="badbf4a2-821d-4380-a74e-3886ae665e5e" mode="popupcard" v="o" alignpopup="center" popupsize="large" background="rgb(23, 23, 23)" color="rgb(255, 255, 255)" params=""></blocksurvey-widget><script type="text/javascript" src= "https://blocksurvey.io/assets/js/blocksurvey-widget.js"></script>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+            <div class="label"></div>
+            <div class="date"></div>
+        </div>
+        <div class="right-text">
+            <h2>Secured by Bitcoin</h2>
+            <p>Bison Labs elevates Bitcoin's utility beyond just a cryptocurrency by enabling developers to build diverse applications directly on Bitcoin's blockchain. This innovation introduces general programmability to Bitcoin, facilitating the creation of DApps, smart contracts, and financial tools, leveraging Bitcoin's security and trust. Bison Labs transforms Bitcoin into a multifaceted development platform, opening new avenues for innovation and trust in blockchain technology.</p>
+        </div>
+    </div>
+  </div>   
+  <div class="section">
+  <div class="custom-line"></div>
+  <hr class="hr-style" style="margin-top: 40px;">
+      <div class="split-screen flex justify-between items-start p-4">
+        <!-- Left content for the title -->
+        <div class="left-content">
+          <h1 class="text-2xl font-bold leading-none">GET CONNECTED</h1>
+        </div>
+        <!-- Right content with SVG icons -->
+        <div class="right-content flex items-center">
+          <!-- Discord SVG Icon -->
+          <a href="https://discord.com/Wr26ZV2fak" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="icons8-discord.svg" alt="Discord Icon"/>
+          </a>
 
-          <div id="w-node-a5d7729a-ba6e-8625-1a5c-794642d9768b-42d9767c" class="footer_links">
-            <div class="footer_links-pages">
-              <ul role="list" class="w-list-unstyled">
-                <li class="footer_links-link">
-                  <h6 class="margin-bottom margin-small">Pages</h6>
-                </li>
-                <li class="footer_links-link"><a href="index.html" class="footer_links-link w-inline-block">
-                    <h6>Home</h6>
-                  </a></li>
-                <li class="footer_links-link"><a href="about.html" class="footer_links-link w-inline-block">
-                    <h6>About</h6>
-                  </a></li>
-                <!-- <li class="footer_links-link"><a href="services.html" aria-current="page" class="footer_links-link w-inline-block w--current"><h6>Services</h6></a></li> -->
-                <!-- <li class="footer_links-link"><a href="play.html" class="footer_links-link w-inline-block"><h6>Play</h6></a></li> -->
-                <!-- <li class="footer_links-link"><a href="contact.html" class="footer_links-link w-inline-block"><h6>GET IN TOUCH</h6></a></li> -->
-              </ul>
-            </div>
-            <div class="footer_links-services">
-              <h6 class="margin-bottom margin-small">Features</h6>
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items">
-                  <div role="listitem" class="w-dyn-item"><a href="" class="footer_links-link w-inline-block">
-                      <h6>Trade Easily</h6>
-                    </a></div>
-                  <div class="footer_social">
-                    <h6>Follow</h6>
-                    <div class="footer_social-list">
+          <!-- GitHub SVG Icon -->
+          <a href="https://linktr.ee/bisonlabs" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="linktree.svg" alt="GitHub Icon"/>
+          </a>
 
-                      <a href="https://twitter.com/Bison_Labs" target="_blank"
-                        class="footer_social-link w-inline-block">
-                        <div class="w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g opacity="0.6">
-                              <path
-                                d="M23.1801 6.71055L21.0801 5.81055L22.1801 3.41055L19.6201 4.26055C18.8047 3.50048 17.7347 3.07249 16.6201 3.06055C15.4274 3.06319 14.2844 3.53814 13.441 4.38148C12.5977 5.22483 12.1227 6.36788 12.1201 7.56055V8.56055C8.58008 9.29055 5.49008 7.36055 2.62008 4.06055C2.12008 6.72721 2.62008 8.72721 4.12008 10.0605L0.830078 9.56055C0.957184 10.6197 1.45242 11.6006 2.22926 12.3317C3.00609 13.0629 4.01513 13.4978 5.08008 13.5605L2.33008 14.5605C3.33008 16.5605 5.15008 16.8705 7.58008 17.0605C5.5939 18.4152 3.23365 19.1146 0.830078 19.0605C13.5901 24.7305 21.0801 16.4005 21.0801 9.06055V8.23055L23.1801 6.71055Z"
-                                stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                            </g>
-                          </svg></div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="footer_logo">
-                    <div class="w-embed">
-                      <img src="images/footer-logo.png" width="100%" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="footer_bottom">
-                <h6>In Bitcoin We Trust.</h6>
-                <div class="w-dyn-list">
-                  <div role="list" class="w-dyn-items">
-                    <div role="listitem" class="w-dyn-item"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- TwitterX SVG Icon -->
+          <a href="https://twitter.com/bison_labs" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="icons8-twitterx.svg" alt="TwitterX Icon"/>
+          </a>
         </div>
       </div>
-      <script src="../d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8031d.js?site=638796400e555d3726374b33"
-        type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous"></script>
-      <script src="../assets.website-files.com/638796400e555d3726374b33/js/bison-2023.cea1d3bda.js"
-        type="text/javascript"></script>
-      <script src="../cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"
-        integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://unpkg.com/@barba/core"></script>
-      <script src="../cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
-        integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="../cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js"
-        integrity="sha512-+LXqbM6YLduaaxq6kNcjMsQgZQUTdZp7FTaArWYFt1nxyFKlQSMdIF/WQ/VgsReERwRD8w/9H9cahFx25UDd+g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="../cdn.jsdelivr.net/npm/swiper%408/swiper-bundle.min.js"></script>
-      <script src="../cdn.jsdelivr.net/gh/studio-freight/lenis%40latest/bundled/lenis.js"></script>
-      <script src="../unpkg.com/masonry-layout%404.2.2/dist/masonry.pkgd.min.js"></script>
+    </section>
+  </div>
+  <footer id="myFooter" class="gray-section">
+      <div class="top-section"> <!-- New div for top section -->
+          <img src="logo6.png" alt="Logo" class="footer-logo">
+          <nav class="navigation-bar">
+            <a href="https://linktr.ee/bisonlabs">About</a>
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Docs</a>
+            <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+            <a href="/blog"> $LABB Token Claim</a>
+        </nav>        
+      </div>
+      <div class="bottom-section"> <!-- New div for bottom section -->
+          <p class="footer-slogan">In Bitcoin We Trust.</p>
+          <p class="footer-sentence">Start Building on Bison Today!</p>
+      </div>
+  </footer>
+          <!-- End of the HTML content -->
+
+        <!-- End of New Section -->
+        <script>
+          function toggleMenu() {
+  var x = document.getElementById("myTopNav");
+  if (x.className === "top-nav") {
+    x.className += " responsive";
+  } else {
+    x.className = "top-nav";
+  }
+}
+function openMenu() {
+  document.getElementById("menuOverlay").style.width = "100%";
+}
+
+function closeMenu() {
+  document.getElementById("menuOverlay").style.width = "0%";
+}
+            // Define your word and gradient pairs
+          const gradients = {
+              'STABLECOINS': 'linear-gradient(to right, #0e4b61, #1b8aae)', // Deep ocean blue to clear sky blue for trust and depth.
+              'LENDING': 'linear-gradient(to right, #1d976c, #93f9b9)', // Growth-inspired green to light green for prosperity and freshness.
+              'BRIDGES': 'linear-gradient(to right, #414345, #232526)', // Dark charcoal to black for strength and connection.
+              'DEXS': 'linear-gradient(to right, #2a2a72, #009ffd)', // Mysterious indigo to vibrant blue for innovation and clarity.
+              'GAMES': 'linear-gradient(to right, #6441A5, #2a0845)', // Purple to deep purple for creativity and imagination.
+              'DERIVATIVES': 'linear-gradient(to right, #16222A, #3A6073)', // Dark slate to steel blue for reliability and corporate presence.
+              'PREDICTION MARKETS': 'linear-gradient(to right, #FF4E50, #F9D423)', // A bold red to yellow for dynamism and forward-thinking.
+              'ANYTHING': 'linear-gradient(to right, #4DA0B0, #D39D38)' // Reflective teal to rich gold for versatility and value.
+          };
 
 
 
-      <script>
-        function loadJS(FILE_URL, TYPE, async = true) {
-          let scriptEle = document.createElement("script");
 
-          scriptEle.setAttribute("src", FILE_URL);
-          scriptEle.setAttribute("type", TYPE);
-          scriptEle.setAttribute("async", async);
+            const header = document.getElementById('header');
+            const dynamicWord = document.getElementById('dynamicWord');
 
-          document.body.appendChild(scriptEle);
+            // Function to cycle through words and gradients
+            function cycleGradients() {
+                const words = Object.keys(gradients);
+                let index = 0;
 
-          // success event 
-          scriptEle.addEventListener("load", () => {
-            console.log("File loaded")
-          });
-          // error event
-          scriptEle.addEventListener("error", (ev) => {
-            console.log("Error on loading file", ev);
-          });
-        }
-
-        function scripts() {
-
-          loadJS("../cdn.jsdelivr.net/npm/%40finsweet/attributes-copyclip%401/copyclip.js", "text/javascript", true);
-
-          $('body').on('click', '.header_menu-toggle', function (e) {
-            e.preventDefault();
-            $('body, .modal-nav, .modal-nav_inner, .modal-nav_content, .modal-nav_background, .body_inner, .header_menu-toggle').addClass('open');
-            setTimeout(function () {
-              $('.modal-nav_content').fadeIn();
-            }, 300);
-          });
-
-          $('body').on('click', '.header_menu-toggle.open, .modal-nav_menu-link', function (e) {
-            $('body, .modal-nav_inner, .modal-nav_background, .body_inner, .header_menu-toggle').removeClass('open');
-            setTimeout(function () {
-              $('.modal-nav').removeClass('open');
-            }, 600);
-          });
-
-          $(".testimonial-slider_component").each(function (index) {
-            const swiper = new Swiper($(this).find(".swiper")[0], {
-              fadeEffect: { crossFade: true },
-              effect: 'fade',
-              autoHeight: true,
-              followFinger: true,
-              slidesPerView: 1,
-
-              pagination: {
-                el: $(this).find(".swiper-bullet-wrapper")[0],
-                bulletActiveClass: "is-active",
-                bulletClass: "swiper-bullet",
-                clickable: true,
-                renderBullet: function (index, className) {
-                  return '<button class="' + className + '">' + (index + 1) + "</button>";
-                }
-              },
-              slideActiveClass: "is-active",
-              slideDuplicateActiveClass: "is-active"
-            });
-          });
-
-          var accordion = (function () {
-
-            var $accordion = $('.js-accordion');
-            var $accordion_header = $accordion.find('.js-accordion-header');
-            var $accordion_item = $('.js-accordion-item');
-
-            // default settings 
-            var settings = {
-              speed: 400,
-            };
-
-            return {
-              // pass configurable object literal
-              init: function ($settings) {
-                $accordion_header.on('click', function () {
-                  accordion.toggle($(this));
-                });
-
-                $.extend(settings, $settings);
-
-                $('.js-accordion-item').eq(0).addClass('active');
-                $('.js-accordion-item').eq(0).find('.js-accordion-header').addClass('active');
-                $('.js-accordion-item').eq(0).find('.accordion-dot').addClass('active');
-
-                // ensure only one accordion is active if oneOpen is true
-                if ($('.js-accordion-item.active').length > 1) {
-                  $('.js-accordion-item.active:not(:first)').removeClass('active');
-                }
-
-                // reveal the active accordion bodies
-                $('.js-accordion-item.active').find('> .js-accordion-body').show();
-
-                $('.accordion-image-img').not($('.active .accordion-image-img'))
-                  .css({
-                    'height': '0'
-                  })
-
-              },
-              toggle: function ($this) {
-
-                if ($this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
-                  $this.closest('.js-accordion')
-                    .find('> .js-accordion-item')
-                    .removeClass('active')
-                    .find('.js-accordion-body')
-                    .slideUp({ duration: 500, easing: "easeInOutQuart" });
-
-                  $('.js-accordion-header').removeClass('active');
-                  $('.accordion-dot').removeClass('active');
-                }
-
-                // show/hide the clicked accordion item
-                $this.closest('.js-accordion-item').toggleClass('active');
-                $this.next().stop().slideToggle({ duration: 500, easing: "easeInOutQuart" });
-
-                $this.closest('.js-accordion-item').find('.js-accordion-header').toggleClass('active');
-
-                var itemIndex = $('.js-accordion-item.active').index(),
-                  itemHeight = $('.js-accordion-item').find('.js-accordion-header').innerHeight(),
-                  itemTop = $('.js-accordion-item.active').offset().top - $('.js-accordion-item.active').parent().offset().top - $('.js-accordion-item.active').parent().scrollTop();
-
-                $('.accordion-image').animate({ 'top': itemIndex * itemHeight }, 500, "easeInOutQuart");
-
-                $('.active .accordion-dot').toggleClass('active');
-
-                $('.accordion-image-img').not($('.active .accordion-image-img'))
-                  .css({
-                    'top': '0',
-                    'bottom': 'auto'
-                  })
-                  .animate({ 'height': 0 }, 500, 'easeInOutQuart');
-
-                $('.active .accordion-image-img')
-                  .css({
-                    'top': 'auto',
-                    'bottom': '0'
-                  })
-                  .animate({ 'height': '100%' }, 500, 'easeInOutQuart');
-
-              }
+                setInterval(() => {
+                    const word = words[index];
+                    dynamicWord.textContent = word;
+                    header.style.background = gradients[word];
+                    index = (index + 1) % words.length; // Loop back to the first word after the last
+                }, 3000); // Change every 3000 milliseconds (3 seconds)
             }
-          })();
 
-          $(document).ready(function () {
-            accordion.init({ speed: 300 });
-          });
+            // Start the cycling of gradients when the window loads
+            window.onload = cycleGradients;
+          // Function to update the navigation bar gradient based on the active word
+          function updateNavBarGradient(word) {
+            const navBar = document.querySelector('.top-nav'); // Select the navigation bar
+            const gradient = gradients[word]; // Get the gradient for the active word
 
-          $(".play-slider_component").each(function (index) {
-            let loopMode = false;
-            if ($(this).attr("loop-mode") === "true") {
-              loopMode = true;
+            if (navBar && gradient) {
+              navBar.style.background = gradient; // Update the navigation bar's background gradient
             }
-            let sliderDuration = 300;
-            if ($(this).attr("slider-duration") !== undefined) {
-              sliderDuration = +$(this).attr("slider-duration");
-            }
-            const swiper = new Swiper($(this).find(".swiper")[0], {
-              speed: sliderDuration,
-              loop: loopMode,
-              autoplay: {
-                delay: 1,
-                disableOnInteraction: true,
-              },
-              speed: 10000,
-              autoHeight: false,
-              centeredSlides: loopMode,
-              followFinger: true,
-              freeMode: true,
-              slideToClickedSlide: false,
-              slidesPerView: 1,
-              spaceBetween: "1.5rem",
-              rewind: false,
-              mousewheel: {
-                forceToAxis: true
-              },
-              keyboard: {
-                enabled: true,
-                onlyInViewport: true
-              },
-              breakpoints: {
-                // mobile landscape
-                480: {
-                  slidesPerView: 1,
-                  spaceBetween: "4%"
-                },
-                // tablet
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: "4%"
-                },
-                // desktop
-                992: {
-                  slidesPerView: 3,
-                  spaceBetween: "2%"
-                }
-              },
-              pagination: {
-                el: $(this).find(".swiper-bullet-wrapper")[0],
-                bulletActiveClass: "is-active",
-                bulletClass: "swiper-bullet",
-                bulletElement: "button",
-                clickable: true
-              },
-              navigation: {
-                nextEl: $(this).find(".swiper-next")[0],
-                prevEl: $(this).find(".swiper-prev")[0],
-                disabledClass: "is-disabled"
-              },
-              scrollbar: {
-                el: $(this).find(".swiper-drag-wrapper")[0],
-                draggable: true,
-                dragClass: "swiper-drag",
-                snapOnRelease: true
-              },
-              slideActiveClass: "is-active",
-              slideDuplicateActiveClass: "is-active"
-            });
-          });
+          }
 
-        }
+          // Existing function to cycle through words and gradients
+          function cycleGradients() {
+            const words = Object.keys(gradients);
+            let index = 0;
 
-        scripts();
+            setInterval(() => {
+              const word = words[index];
+              dynamicWord.textContent = word;
+              header.style.background = gradients[word];
+              updateNavBarGradient(word); // Update the nav bar gradient
+              index = (index + 1) % words.length; // Loop back to the first word after the last
+            }, 3000); // Change every 3000 milliseconds (3 seconds)
+          }
 
-      </script>
-
-      <script>
-        function resetWebflow(data) {
-          let parser = new DOMParser();
-          let dom = parser.parseFromString(data.next.html, "text/html");
-          let webflowPageId = $(dom).find("html").attr("data-wf-page");
-          $("html").attr("data-wf-page", webflowPageId);
-          window.Webflow && window.Webflow.destroy();
-          window.Webflow && window.Webflow.ready();
-          window.Webflow && window.Webflow.require("ix2").init();
-        }
-
-        const customEase = gsap.parseEase("cubic-bezier(0.42, 0, 0.58, 1)");
-
-        barba.init({
-          preventRunning: true,
-          debug: true,
-          sync: true,
-          transitions: [
-            {
-              leave(data) {
-                return gsap.to(data.current.container, {
-                  opacity: 0,
-                  y: -20,
-                  ease: customEase
-                });
-              },
-              enter(data) {
-                let transitionData = data;
-                $(data.next.container).addClass("fixed");
-
-                return gsap.from(data.next.container, {
-                  opacity: 0,
-                  y: 20,
-                  ease: customEase,
-                  onComplete: () => {
-                    $(window).scrollTop(0);
-                    $(data.next.container).removeClass("fixed");
-                    resetWebflow(transitionData);
-
-                    scripts();
-                  }
-                });
-              }
-            },
-          ],
-          views: [
-            {
-              namespace: "about",
-              afterEnter() {
-                console.log('about after');
-                //loadJS("https://unpkg.com/@splinetool/viewer@0.9.256/build/spline-viewer.js", "module", true);
-              }
-            },
-            {
-              namespace: "play",
-              afterEnter() {
-                loadJS("../cdn.jsdelivr.net/npm/%40finsweet/attributes-cmsfilter%401/cmsfilter.js", "text/javascript", true);
-                loadJS("../cdn.jsdelivr.net/npm/%40finsweet/attributes-cmscombine%401/cmscombine.js", "text/javascript", true);
-
-                setTimeout(function () {
-                  var grid = document.querySelector('#masonry');
-                  var msnry = new Masonry(grid, {
-                    itemSelector: '.play-column',
-                    columnWidth: '.play-column',
-                    percentPosition: true,
-                    horizontalOrder: true,
-                  });
-
-                  $(grid).addClass('is-loaded');
-                }, 500);
-              }
-            },
-            {
-              namespace: "work",
-              afterEnter() {
-                loadJS("../cdn.jsdelivr.net/npm/%40finsweet/attributes-cmsfilter%401/cmsfilter.js", "text/javascript", true);
-              }
-            }
-          ]
-        });
-
-
-      </script>
+          // Start the cycling of gradients when the window loads
+          window.onload = cycleGradients;
+   
+        </script>
 </body>
-
 </html>
