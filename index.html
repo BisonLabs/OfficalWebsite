@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bison Labs</title>
+<link rel="stylesheet" href="style.css"> 
+<link rel="icon" type="image/x-icon" href="/bison_landing_page/bionlogobetter.ico">
+<link rel="icon" type="image/x-icon" href="images/art2.jpg">
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    .header { text-align: left; padding: 50px; color: white; transition: background 1s ease-in-out; }
+    .header h1 { font-size: 72px; margin: 0; }
+    .header h2 { font-size: 48px; margin: 0; }
+    .content { margin: 20px; }
+    .button { display: inline-block; margin: 20px; padding: 10px 20px; background: #000; color: #fff; text-decoration: none; }
+    /* Initial background gradient */
+    .header { background: linear-gradient(to left, #FF8008, #FFC837); }
+
+  .section {
+      background-color: #000; /* Dark background for the section */
+      color: white; /* Text color */
+      padding: 50px 0; /* Padding for the section */
+      text-align: center; /* Centering text */
+  }
+
+  .feature-cards {
+      display: flex;
+      justify-content: space-around; /* Spacing around the cards */
+      flex-wrap: wrap; /* Wrap the cards for responsiveness */
+  }
+
+  .card {
+      background-color: #222; /* Card background */
+      padding: 20px; /* Padding inside the cards */
+      margin: 10px; /* Margin around the cards */
+      width: calc(25% - 20px); /* Card width, adjusting for margin */
+      box-sizing: border-box; /* Include padding and border in the width */
+  }
+
+  .card img {
+      width: 50px; /* Example size for icons */
+      margin-bottom: 20px; /* Space below the icons */
+  }
+
+  .card h3 {
+      margin-top: 0; /* Remove top margin from headings */
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 1024px) {
+      .card {
+          width: calc(50% - 20px); /* Adjust card width for medium screens */
+      }
+  }
+
+  @media (max-width: 768px) {
+      .card {
+          width: calc(50% - 20px); /* Adjust card width for smaller screens */
+      }
+  }
+
+  @media (max-width: 480px) {
+      .card {
+          width: 100%; /* Full width cards on very small screens */
+      }
+  }
+
+  /* Style for the horizontal line */
+  .hr-style {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+      margin: 40px 0; /* Adjust the margin to increase/decrease spacing */
+  }
+
+  /* Style for the section title */
+  .section-title {
+      color: white; /* Or the color you want for the text */
+      font-size: 2em; /* Adjust size as needed */
+      margin: 20px 0; /* Space above and below the title */
+      text-align: center; /* Center the title */
+  }
+  /* ... previous styles ... */
+
+  /* ... other styles ... */
+
+  .split-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background-color: black; /* Background for the entire section */
+      color: white; /* Text color for the entire section */
+  }
+
+  .text-side {
+      flex: 1; /* Allows the text side to fill half the space */
+      padding-right: 20px; /* If you need spacing between the text and the card */
+  }
+
+  .info-card {
+      flex: 1; /* Take up the other half */
+      background-color: #000; /* Darker background for the card */
+      padding: 20px;
+      margin-left: 20px; /* Add some spacing between the text and the card */
+  }
+
+  .info-card h2 {
+      font-size: 2em; /* Large font size for the title */
+      margin-bottom: 0.5em;
+  }
+
+  .data-note {
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin-top: 10px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .split-section {
+          flex-direction: column;
+          text-align: center;
+      }
+
+      .info-card {
+          margin-left: 0;
+          margin-top: 20px;
+      }
+  }
+  /* ... previous styles ... */
+
+  .split-screen {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+      background-color: black; /* Or any color you want for the background */
+      color: white;
+  }
+
+  .left-card {
+    flex-basis: 50%; /* Takes up half the width */
+    background: linear-gradient(to bottom, #f7931a, #b84a00); /* Gradient from light to dark Bitcoin orange */
+    color: white;
+    padding: 40px;
+    text-align: center; /* Center the content horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally for each flex item */
+    height: 100%; /* Ensure the card stretches to the full height of its container */
+}
+
+
+.statistic {
+    font-size: 5em; /* Large font size for the statistic */
+    margin-bottom: 0.2em;
+}
+
+.dollar-sign {
+    font-size: 0.6em; /* Smaller font size for the dollar sign */
+    vertical-align: super; /* Align the dollar sign with the top of the numbers */
+}
+
+.label {
+    font-size: 2em; /* Large font size for the label */
+    margin-bottom: 0.5em;
+}
+
+.date {
+    font-size: 0.8em; /* Smaller font size for the date */
+    margin-top: 20px; /* Space from the label */
+}
+
+
+  .right-text {
+      flex-basis: 50%; /* Takes up the other half */
+      padding: 0 50px; /* Padding on the sides */
+  }
+
+  .right-text h2 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+  }
+
+  .right-text p {
+      font-size: 1em;
+  }
+
+  /* ... more styles ... */
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .split-screen {
+          flex-direction: column;
+      }
+
+      .left-card, .right-text {
+          flex-basis: 100%; /* Full width on small screens */
+          padding: 20px; /* Reduced padding on small screens */
+      }
+
+      .date {
+          position: static; /* Static position on small screens */
+          margin-top: 20px; /* Space from the label */
+      }
+  }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .top-nav {
+      background: linear-gradient(to left, #FF8008, #FFC837); /* New gradient background */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .top-nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+  }
+
+  /* ... more of the provided styles ... */
+
+  .bg-clip-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+    .split-screen {
+        display: flex;
+        padding: 50px;
+        background-color: black; /* Or any color you want for the background */
+        color: white;
+        align-items: flex-start; /* Aligns the content to the top */
+        flex-wrap: wrap; /* Ensures content wraps on smaller screens */
+    }
+
+    .left-content, .right-content {
+        flex-basis: 50%; /* Takes up half the width on larger screens */
+        padding: 20px; /* Padding around content */
+        box-sizing: border-box; /* Includes padding in the width calculation */
+    }
+
+    .button {
+        padding: 10px 20px; /* Padding inside the button */
+        border: 100px solid #fff; /* White border */
+        color: #fff; /* White text */
+        background: transparent; /* Transparent background */
+        text-decoration: none; /* Removes underline from text */
+        font-size: 16px; /* Adjust the font size as needed */
+        cursor: pointer; /* Changes cursor to pointer on hover */
+        display: inline-block; /* Allows the button to be inline but also have padding */
+        margin-top: 10px; /* Margin above the button */
+        text-align: center; /* Centers text within the button */
+        transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+        border-radius: 5px; /* Rounded corners, adjust as needed */
+    }
+
+    .button:hover {
+        background-color: #fff; /* White background on hover */
+        color: #000; /* Black text on hover */
+    }
+
+    @media (max-width: 768px) {
+        .left-content, .right-content {
+            flex-basis: 100%; /* Full width on smaller screens */
+        }
+    }
+    .heading {
+        color: white;
+        font-size: 4em; /* You may adjust this as needed to fit your design */
+        text-align: left;
+        line-height: 1.2; /* Increase line-height to add more space between lines */
+        letter-spacing: -2px; /* Adjust letter-spacing to fine-tune the spacing between letters */
+        word-wrap: break-word;
+        max-width: fit-content;
+        margin: 0 auto; /* Centers the heading if the parent container has a defined width */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+        .heading {
+            font-size: 2em; /* Adjust font-size for smaller screens */
+            letter-spacing: -1px; /* Less spacing for smaller font sizes */
+        }
+    }
+
+    @media (min-width: 768px) {
+        .heading {
+            width: 60%; /* Adjust width on larger screens to control word wrapping */
+        }
+    }
+
+    .content-section {
+        background-color: #000; /* Adjust the background color as needed */
+        color: white; /* Text color */
+        padding: 40px; /* Padding for the section */
+    }
+
+    .text-content {
+        text-align: left; /* Correct text alignment */
+        margin-bottom: 20px; /* Space between text content and the image */
+    }
+
+    .text-content h1 {
+        font-size: 2.5em; /* Large font size for the heading */
+    }
+
+    .text-content p {
+        font-size: 1em; /* Adjust the font size for the paragraph as needed */
+    }
+
+    .text-content .button {
+        padding: 10px 20px;
+        border: 2px solid #fff;
+        color: #fff;
+        background: transparent;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 20px;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+    .text-content .button:hover {
+        background-color: #fff;
+        color: #000;
+        transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
+    }
+    /* Styling for the left content header */
+    .muneebhasnochance .left-content {
+      /* Ensure there's enough space at the bottom of the title */
+      margin-bottom: 40px; /* Adjust as needed */
+    }
+
+    .muneebhasnochance .left-content h1 {
+      color: white;
+      font-size: 4em;
+      text-align: left;
+      margin: 0; /* Remove margin from the h1 and control it via the parent container */
+    }
+
+    /* Styling for the right content paragraph */
+    .muneebhasnochance .right-content {
+      /* Ensure there's enough space at the top of the paragraph */
+      margin-top: 40px; /* Adjust as needed */
+      max-width: 600px;
+    }
+
+    .muneebhasnochance .right-content p {
+      color: white;
+      font-size: 1.25em;
+      text-align: left;
+      margin: 0; /* Remove margin from the p and control it via the parent container */
+    }
+
+    /* Button styling */
+    .muneebhasnochance .read-more-button button {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      text-align: left;
+      display: block;
+    }
+
+    /* Flexbox approach for split section */
+    .muneebhasnochance .split-section {
+      display: flex;
+      flex-direction: row; /* Adjust to column for smaller screens as needed */
+      justify-content: space-between; /* This separates left and right content */
+      align-items: flex-start; /* Aligns items to the start of the flex container */
+    }
+
+    /* Responsive adjustments using media queries */
+    @media (max-width: 768px) {
+      .muneebhasnochance .split-section {
+        flex-direction: column;
+        align-items: stretch; /* Stretch children to full width */
+      }
+
+      .muneebhasnochance .left-content,
+      .muneebhasnochance .right-content {
+        margin-bottom: 20px; /* Provide space between stacked elements */
+        margin-top: 0; /* Reset top margin for the right content */
+        width: 100%; /* Full width for smaller screens */
+        padding: 0 10px; /* Adjust padding for smaller screens */
+      }
+
+      .muneebhasnochance .left-content h1,
+      .muneebhasnochance .right-content p {
+        margin-bottom: 20px; /* Adjust the space for smaller screens if needed */
+        margin-top: 20px; /* Adjust the space for smaller screens if needed */
+      }
+    }
+
+    .full-width-image {
+        width: 100%; /* Full width */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensures it takes up the full width */
+        margin-top: 20px; /* Space between the image and the text content */
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .text-content {
+            text-align: center; /* Center the text on smaller screens */
+        }
+
+        .text-content .button {
+            margin: 20px auto; /* Center the button on smaller screens */
+            display: block; /* Make the button block level so it centers nicely */
+        }
+    }
+    
+</style>
+</head>
+<body>
+  <header class="relative">
+    <nav class="top-nav" id="myTopNav">
+        <div>
+            <img src="logo.png" alt="BASE logo" style="height: 50px;">
+        </div>
+        <div class="nav-links">
+            <!-- Container for navigation links -->
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Ecosystem</a>
+            <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Developers</a>
+            <a href="https://linktr.ee/bisonlabs">About</a>
+        </div>
+        <!-- Hamburger icon -->
+        <a href="javascript:void(0);" class="icon" onclick="openMenu()">&#9776;</a>
+      </nav>
+    <div class="header" id="header">
+        <h1>BUILD</h1>
+        <h2 id="dynamicWord" class="bg-clip-text">STABLECOINS</h2>
+        <h1>ON BISON</h1>
+        <p>A Zero-Knowledge Rollup built on Native Bitcoin, enhancing scalability and programmability for the Bitcoin ecosystem.</p>
+        <a href="https://dmaster-1.gitbook.io/bisonlabs/" class="button">Read the docs</a>
+        <a href="http://testnet.bisonlabs.io/bridge" class="button">Bridge assets</a>
+    </div>
+</header>
+<!-- Add this HTML at the top of your <body> or right after the <header> -->
+  <!-- Overlay Menu Start -->
+<div id="menuOverlay" class="menu-overlay">
+  <!-- Close button -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+  
+  <!-- Overlay Content -->
+  <div class="overlay-content">
+    <a href="https://dmaster-1.gitbook.io/bisonlabs/">Ecosystem</a>
+    <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+    <a href="https://dmaster-1.gitbook.io/bisonlabs/">Developers</a>
+    <a href="https://linktr.ee/bisonlabs">About</a>
+  </div>
+    
+    <!-- Social Links -->
+    <div class="social-icons">
+      <a href="https://discord.com/Wr26ZV2fak" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-discord.svg" alt="Discord Icon"/>
+      </a>
+      <a href="https://dmaster-1.gitbook.io/bisonlabs/" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-github.svg" alt="GitHub Icon"/>
+      </a>
+      <a href="https://twitter.com/bison_labs" target="_blank" rel="noopener noreferrer">
+        <img src="icons8-twitterx.svg" alt="TwitterX Icon"/>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- Overlay Menu End -->
+<!-- New section with black background -->
+<div class="section">
+    <!-- Line at the top of the section -->
+    <div class="custom-line"></div>
+  <hr class="hr-style">
+    <h2>Adding Functionality to Native Bitcoin</h2>
+    <div class="feature-cards">
+      <div class="card">
+          <img src="bitcoin (1).png" alt="Bitcoin L2">
+          <h3>ZK-rollup on Native Bitcoin</h3>
+          <p class="paragraph-space">Utilizing sovereign-style blockchain technology, Bison Labs offers a secure, decentralized platform, overcoming traditional Bitcoin ecosystem limitations. Our focus is on delivering a high-speed, efficient, and secure transaction environment, propelling the future of native Bitcoin transactions.</p>
+      </div>
+      <div class="card">
+          <img src="innovation.png" alt="Speed & Security"> 
+          <h3>Defi on Bitcoin</h3>
+          <p class="paragraph-space">Bison aims to redefine the decentralized finance (DeFi) ecosystem by tapping into the untapped potentials of Bitcoin— the most decentralized, secure, and reliable blockchain in the world. Bison introduces smart contract functionalities to Bitcoin without necessitating any alterations to the existing blockchain.</p>
+      </div>
+      <div class="card">
+          <img src="man.png" alt="Zk-Stark X Ordinals">
+          <h3>ZK-Stark x Ordinals</h3>
+          <p class="paragraph-space">Zk-STARKs provide Bison with enhanced privacy and scalability through advanced cryptographic proofs, enabling efficient, secure transaction verification without revealing sensitive data. Ordinals allow Bison to execute complex smart contracts and decentralized applications (dApps) directly on the Bitcoin blockchain while leveraging Bitcoin's inherent security.</p>
+      </div>
+      <div class="card">
+          <img src="function.png" alt="Bitcoin Native Functioanlity">
+          <h3>Community & Developers</h3>
+          <p class="paragraph-space">Bison Labs is committed to empowering developers to build in the Bitcoin space. Our platform is ready for developers to create innovative applications, supported by essential tools and resources. We actively assist developers in bringing their projects to fruition. If you're ready to build on Bitcoin's robust foundation, reach out to us at contact@bisonlabs.io</p>
+      </div>
+  </div>
+  
+  <style>
+      .paragraph-space {
+          margin-top: 10px; /* Adjust the value to control the space between the header and paragraph */
+      }
+  </style>  
+  <div class="section">
+    <div class="custom-line"></div>
+    <hr class="hr-style">
+    <div class="split-section">
+      <div class="text-side">
+        <h1 style="margin-bottom: 24px;">Bitcoin Principles but Faster and 76x Cheaper</h1> <!-- Added margin-bottom -->
+        <p>Bison enables smart contract functionality with no code changes needed to Bitcoin. On average Bison reduces costs by 76x for users.</p>
+      </div>
+      <div class="info-card">
+        <h2>Build Anything on Bitcoin</h2>
+        <!-- Insert the GIF using an img tag -->
+        <img src="https://cdnb.artstation.com/p/assets/images/images/036/871/229/original/david-haubner-bitcoin-new.gif?1618858774" alt="Bitcoin Animation" style="max-width:50%; height:auto;">
+        <p class="data-note">In Bitcoin We Trust.</p>
+    </div>    
+    </div>
+</div>
+    <div class="custom-line"></div>
+    <hr class="hr-style" style="margin-top: 40px;">
+    <div class="split-section">
+        <div class="left-card">
+            <div class="statistic">
+                <span class="dollar-sign"></span> Build Anything on Bitcoin
+            </div>
+            <div class="label"></div>
+            <div class="date"></div>
+        </div>
+        <div class="right-text">
+            <h2>Secured by Bitcoin</h2>
+            <p>Bison Labs elevates Bitcoin's utility beyond just a cryptocurrency by enabling developers to build diverse applications directly on Bitcoin's blockchain. This innovation introduces general programmability to Bitcoin, facilitating the creation of DApps, smart contracts, and financial tools, leveraging Bitcoin's security and trust. Bison Labs transforms Bitcoin into a multifaceted development platform, opening new avenues for innovation and trust in blockchain technology.</p>
+        </div>
+    </div>
+  </div>   
+  <div class="section">
+  <div class="custom-line"></div>
+  <hr class="hr-style" style="margin-top: 40px;">
+      <div class="split-screen flex justify-between items-start p-4">
+        <!-- Left content for the title -->
+        <div class="left-content">
+          <h1 class="text-2xl font-bold leading-none">GET CONNECTED</h1>
+        </div>
+        <!-- Right content with SVG icons -->
+        <div class="right-content flex items-center">
+          <!-- Discord SVG Icon -->
+          <a href="https://discord.com/Wr26ZV2fak" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="icons8-discord.svg" alt="Discord Icon"/>
+          </a>
+
+          <!-- GitHub SVG Icon -->
+          <a href="https://linktr.ee/bisonlabs" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="linktree.svg" alt="GitHub Icon"/>
+          </a>
+
+          <!-- TwitterX SVG Icon -->
+          <a href="https://twitter.com/bison_labs" class="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+            <img src="icons8-twitterx.svg" alt="TwitterX Icon"/>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer id="myFooter" class="gray-section">
+      <div class="top-section"> <!-- New div for top section -->
+          <img src="logo6.png" alt="Logo" class="footer-logo">
+          <nav class="navigation-bar">
+            <a href="https://linktr.ee/bisonlabs">About</a>
+            <a href="https://dmaster-1.gitbook.io/bisonlabs/">Docs</a>
+            <a href="http://testnet.bisonlabs.io/bridge">Bridge</a>
+            <a href="/blog"> $LABB Token Claim</a>
+        </nav>        
+      </div>
+      <div class="bottom-section"> <!-- New div for bottom section -->
+          <p class="footer-slogan">In Bitcoin We Trust.</p>
+          <p class="footer-sentence">Start Building on Bison Today!</p>
+      </div>
+  </footer>
+          <!-- End of the HTML content -->
+
+        <!-- End of New Section -->
+        <script>
+          function toggleMenu() {
+  var x = document.getElementById("myTopNav");
+  if (x.className === "top-nav") {
+    x.className += " responsive";
+  } else {
+    x.className = "top-nav";
+  }
+}
+function openMenu() {
+  document.getElementById("menuOverlay").style.width = "100%";
+}
+
+function closeMenu() {
+  document.getElementById("menuOverlay").style.width = "0%";
+}
+            // Define your word and gradient pairs
+          const gradients = {
+              'STABLECOINS': 'linear-gradient(to right, #0e4b61, #1b8aae)', // Deep ocean blue to clear sky blue for trust and depth.
+              'LENDING': 'linear-gradient(to right, #1d976c, #93f9b9)', // Growth-inspired green to light green for prosperity and freshness.
+              'BRIDGES': 'linear-gradient(to right, #414345, #232526)', // Dark charcoal to black for strength and connection.
+              'DEXS': 'linear-gradient(to right, #2a2a72, #009ffd)', // Mysterious indigo to vibrant blue for innovation and clarity.
+              'GAMES': 'linear-gradient(to right, #6441A5, #2a0845)', // Purple to deep purple for creativity and imagination.
+              'DERIVATIVES': 'linear-gradient(to right, #16222A, #3A6073)', // Dark slate to steel blue for reliability and corporate presence.
+              'PREDICTION MARKETS': 'linear-gradient(to right, #FF4E50, #F9D423)', // A bold red to yellow for dynamism and forward-thinking.
+              'ANYTHING': 'linear-gradient(to right, #4DA0B0, #D39D38)' // Reflective teal to rich gold for versatility and value.
+          };
+
+
+
+
+            const header = document.getElementById('header');
+            const dynamicWord = document.getElementById('dynamicWord');
+
+            // Function to cycle through words and gradients
+            function cycleGradients() {
+                const words = Object.keys(gradients);
+                let index = 0;
+
+                setInterval(() => {
+                    const word = words[index];
+                    dynamicWord.textContent = word;
+                    header.style.background = gradients[word];
+                    index = (index + 1) % words.length; // Loop back to the first word after the last
+                }, 3000); // Change every 3000 milliseconds (3 seconds)
+            }
+
+            // Start the cycling of gradients when the window loads
+            window.onload = cycleGradients;
+          // Function to update the navigation bar gradient based on the active word
+          function updateNavBarGradient(word) {
+            const navBar = document.querySelector('.top-nav'); // Select the navigation bar
+            const gradient = gradients[word]; // Get the gradient for the active word
+
+            if (navBar && gradient) {
+              navBar.style.background = gradient; // Update the navigation bar's background gradient
+            }
+          }
+
+          // Existing function to cycle through words and gradients
+          function cycleGradients() {
+            const words = Object.keys(gradients);
+            let index = 0;
+
+            setInterval(() => {
+              const word = words[index];
+              dynamicWord.textContent = word;
+              header.style.background = gradients[word];
+              updateNavBarGradient(word); // Update the nav bar gradient
+              index = (index + 1) % words.length; // Loop back to the first word after the last
+            }, 3000); // Change every 3000 milliseconds (3 seconds)
+          }
+
+          // Start the cycling of gradients when the window loads
+          window.onload = cycleGradients;
+   
+        </script>
+</body>
+</html>
