@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/bisonlabs.github.io/static/css/main.ff7c7dee.css",
+    "main.js": "/bisonlabs.github.io/static/js/main.04c28f85.js",
+    "static/js/787.d4aba7ab.chunk.js": "/bisonlabs.github.io/static/js/787.d4aba7ab.chunk.js",
+    "static/media/OffBitTrial-DotBold.otf": "/bisonlabs.github.io/static/media/OffBitTrial-DotBold.fab92b54151ff009cdd7.otf",
+    "index.html": "/bisonlabs.github.io/index.html",
+    "main.ff7c7dee.css.map": "/bisonlabs.github.io/static/css/main.ff7c7dee.css.map",
+    "main.04c28f85.js.map": "/bisonlabs.github.io/static/js/main.04c28f85.js.map",
+    "787.d4aba7ab.chunk.js.map": "/bisonlabs.github.io/static/js/787.d4aba7ab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff7c7dee.css",
+    "static/js/main.04c28f85.js"
+  ]
+}
