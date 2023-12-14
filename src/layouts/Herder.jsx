@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Ecosystem", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
-  { name: "Bridge", href: "/bridge" },
+  { name: "Bridge", href: "http://testnet.bisonlabs.io/bridge" },
   { name: "Developers", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
   { name: "About", href: "https://linktr.ee/bisonlabs" },
   // { name: "LABB Token Claim(COMING SOON)", href: "/claim" },
@@ -35,10 +35,10 @@ export default function Header() {
   const navigate = useNavigate();
   const handleClickBridge = () => {
     navigate("/bridge");
-  }
+  };
   const handleClickClaim = () => {
     navigate("/claim");
-  }
+  };
 
   return (
     <div className="bg-white">
@@ -85,14 +85,14 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className="text-lg font-sans leading-6 text-white hover:text-amber-500"
-                target={(item.name !== "Bridge" && item.name !=="LABB Token Claim(COMING SOON)") ? "_blank" : "_self"}
+                target="_blank"
               >
                 <div className="font-medium">{item.name}</div>
               </a>
             ))}
           </div>
 
-          {/* <div className="hidden lg:flex lg:justify-end ml-10">
+          <div className="hidden lg:flex lg:justify-end ml-10">
             <button
               onClick={() => setModalOpen(true)}
               className="bg-amber-500 font-sans text-black rounded-full py-1 w-28 font-bold"
@@ -100,7 +100,7 @@ export default function Header() {
             >
               Connect
             </button>
-          </div> */}
+          </div>
         </nav>
 
         <Dialog
@@ -136,12 +136,13 @@ export default function Header() {
                       key={item.name}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-amber-500"
+                      target="_blank"
                     >
                       {item.name}
                     </a>
                   ))}
                 </div>
-                {/* <div className="py-6">
+                <div className="py-6">
                   <button
                     onClick={() => setModalOpen(true)}
                     className="bg-amber-500 font-sans text-black rounded-md py-4 w-48 text-lg font-bold"
@@ -149,7 +150,7 @@ export default function Header() {
                   >
                     Connect
                   </button>
-                </div> */}
+                </div>
               </div>
             </div>
           </Dialog.Panel>

@@ -1,13 +1,38 @@
-import React from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const Word = ({ word, isActive }) => {
+  return (
+    <p
+      className={`text-amber-500 text-3xl sm:text-5xl lg:text-6xl xl:text-8xl font-medium ${
+        isActive ? "animate-bounce" : "opacity-0"
+      }`}
+    >
+      {word}
+    </p>
+  );
+};
 
 const Dashboard = () => {
   // Content
+  const words = ["STABLECOINS", "LENDING", "DeFi"];
+
   const Content = () => {
     const navigate = useNavigate();
     const handleClickBridge = () => {
       navigate("/bridge");
     };
+
+    const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      }, 2000); // Adjust the interval time as needed
+
+      return () => clearInterval(intervalId);
+    }, []);
+
     return (
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -15,9 +40,12 @@ const Dashboard = () => {
             <p className="text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-white font-medium">
               BUILD
             </p>
-            <p className="animate-bounce text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-amber-500 font-medium">
+            <div className="flex">
+              <Word word={words[currentWordIndex]} isActive={true} />
+            </div>
+            {/* <p className="animate-bounce text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-amber-500 font-medium">
               STABLECOINS
-            </p>
+            </p> */}
             <p className="text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-white font-medium">
               ON BISON
             </p>
@@ -32,19 +60,18 @@ const Dashboard = () => {
                 Read Docs
               </button>
             </a>
-            <button
-              className=" bg-black text-white border-2 border-solid border-white hover:bg-white hover:text-black rounded transition duration-300 ease-in-out mr-10 mt-14 w-32 py-2"
-              onClick={handleClickBridge}
-            >
-              Bridge Assets
-            </button>
+            <a href="http://testnet.bisonlabs.io/bridge" target="_blank">
+              <button className=" bg-black text-white border-2 border-solid border-white hover:bg-white hover:text-black rounded transition duration-300 ease-in-out mr-10 mt-14 w-32 py-2">
+                Bridge Assets
+              </button>
+            </a>
           </div>
 
           <div className="flex justify-center items-center flex-col mt-8">
             <img
               src="/img/menuImages/art1.png"
               alt="Art1"
-              className="fadeIn max-w-xs lg:max-w-md"
+              className="fadeIn max-w-xs lg:max-w-md xl:max-w-xl"
             />
             <p className="text-center text-sans text-xl pt-6">
               BRC-20 Trading Is Now 1000x Faster
@@ -172,17 +199,19 @@ const Dashboard = () => {
         "/img/menuImages/telegram-black.webp.png",
         "https://t.me/+a5g-srOWtthkNGI5",
       ],
-      ["/img/menuImages/forum-black.webp.png", "/"],
-      ["/img/menuImages/reddit-black.webp.png", "/"],
+      // ["/img/menuImages/forum-black.webp.png", "/"],
+      // ["/img/menuImages/reddit-black.webp.png", "/"],
     ];
-    const title = ["X", "Discord", "Github", "Telegram", "Forum", "Reddit"];
+    // const title = ["X", "Discord", "Github", "Telegram", "Forum", "Reddit"];
+    const title = ["X", "Discord", "Github", "Telegram"];
+
     const content = [
       "Read the latest",
       "Get involved",
       "Build with us",
       "Join discussion",
-      "Read Updates",
-      "See more",
+      // "Read Updates",
+      // "See more",
     ];
     return (
       <div className="bg-gradient-to-r from-amber-300 to-amber-600">
@@ -197,8 +226,8 @@ const Dashboard = () => {
                 in ZK innovations!
               </p>
             </div>
-            <div className="md:col-span-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <div className="md:col-span-2 flex">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-10 m-8">
                 {imageUrl.map((image, index) => (
                   <div key={image[0]} className="flex items-center">
                     <div>
