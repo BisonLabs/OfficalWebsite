@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://alexS-dev.github.io/bisonlabs.github.io",
+  "homepage": "https://bisonlabs.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -43,7 +43,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b main -d build"
   },
   "eslintConfig": {
     "extends": [
