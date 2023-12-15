@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <div className="bg-white">
       <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
-        <span className="max-w-screen-md flex flex-wrap grid gap-3 lg:grid-cols-3 sm:grid-cols-1 items-center justify-around text-center mx-auto">
+        <span className="max-w-screen-md flex-wrap grid gap-3 lg:grid-cols-3 sm:grid-cols-1 items-center justify-around text-center mx-auto">
           <span className="text-xl font-bold">ANNOUNCEMENT</span>
           <span>LABB Claim COMING SOON!</span>
           <span>
@@ -92,7 +92,7 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="hidden lg:flex lg:justify-end ml-10">
+          {/* <div className="hidden lg:flex lg:justify-end ml-10">
             <button
               onClick={() => setModalOpen(true)}
               className="bg-amber-500 font-sans text-black rounded-full py-1 w-28 font-bold"
@@ -100,7 +100,7 @@ export default function Header() {
             >
               Connect
             </button>
-          </div>
+          </div> */}
         </nav>
 
         <Dialog
@@ -142,7 +142,7 @@ export default function Header() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
+                {/* <div className="py-6">
                   <button
                     onClick={() => setModalOpen(true)}
                     className="bg-amber-500 font-sans text-black rounded-md py-4 w-48 text-lg font-bold"
@@ -150,7 +150,7 @@ export default function Header() {
                   >
                     Connect
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </Dialog.Panel>

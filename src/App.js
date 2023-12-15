@@ -17,14 +17,15 @@ function App() {
       <div className="App  bg-black">
         <Header />
         <Routes>
-          <Route path="/" element={<Dashboard to="/" />} />
-          <Route path="/bridge" element={<Bridge />} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/bridge" element={<Bridge />} />
           <Route path="/swap-and-send" element={<SwapAndSend />} />
           <Route path="/bitmap-bridge" element={<BitmapBridge />} />
           <Route path="/bitmap-bridge/bridiging" element={<SwapBridge />} />
           <Route path="/network-overview" element={<NetworkOverview />} />
-          <Route path="/pipe-bridge" element={<PipeBridge />} />
-          <Route path="/claim" element={<LabbClaim />} />
+          <Route path="/pipe-bridge" element={<PipeBridge />} /> */}
+          <Route path="/claim_test" element={<LabbClaim />} />
         </Routes>
         <Footer />
       </div>

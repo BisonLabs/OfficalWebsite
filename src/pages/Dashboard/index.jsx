@@ -74,7 +74,7 @@ const Dashboard = () => {
               className="fadeIn max-w-xs lg:max-w-md xl:max-w-xl"
             />
             <p className="text-center text-sans text-xl pt-6">
-              BRC-20 Trading Is Now 1000x Faster
+              Bitcoin Native Asset Trading Is Now 1000x Faster
             </p>
           </div>
         </div>
@@ -168,12 +168,13 @@ const Dashboard = () => {
             </p>
             <p className="text-4x1 font-bold">NO BITCOIN SOFTFORK NEEDED!</p>
           </div>
-          <div className="md:col-span-1  flex justify-center items-center my-16">
+          <div className="md:col-span-1  flex justify-center items-center my-16 flex-col">
             <img
               src="/img/menuImages/bitcoin1.gif"
               alt="Art1"
               className="max-w-xs"
             />
+            <p>In Bitcoin We Trust.</p>
           </div>
         </div>
       </div>
@@ -193,7 +194,7 @@ const Dashboard = () => {
       ],
       [
         "/img/menuImages/github-black.webp.png",
-        "https://dmaster-1.gitbook.io/bisonlabs/",
+        "https://github.com/BisonLabs",
       ],
       [
         "/img/menuImages/telegram-black.webp.png",
@@ -231,7 +232,7 @@ const Dashboard = () => {
                 {imageUrl.map((image, index) => (
                   <div key={image[0]} className="flex items-center">
                     <div>
-                      <a href={image[1]}>
+                      <a href={image[1]} target="_blank">
                         <img src={image[0]} className="w-10 m-3" />
                       </a>
                     </div>

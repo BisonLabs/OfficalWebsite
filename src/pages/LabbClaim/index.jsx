@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ClaimBox from "../../components/ClaimBox";
+import { getAddress } from "sats-connect";
 
 const LabbClaim = () => {
   // Content
@@ -7,6 +8,17 @@ const LabbClaim = () => {
     // ...
     const [btcBalance, setBtcBalance] = useState(0);
     const [depositeAmount, setDepositeAmount] = useState(0);
+
+
+    const [ordinalsAddress, setOrdinalsAddress] = useState("");
+    const [paymentAddress, setPaymentAddress] = useState("");
+    const [ordinalsPublicKey, setOrdinalsPublicKey] = useState("");
+    const [paymentPublicKey, setPaymentPublicKey] = useState("");  
+    const [NETWORK,setNetwork] = useState("Testnet");
+    const [claim_endpoint,setClaim_endpoint] = useState("http://209.141.49.238:8072");
+
+
+    
     const handleDepositeAmountChange = (event) => {
       const value = parseFloat(event.target.value);
       if (value >= 0) {
@@ -19,6 +31,74 @@ const LabbClaim = () => {
       setDepositeAmount(maxAmount);
     };
 
+    const onClaimClick = async() =>{
+      if (!ordinalsAddress) {
+        alert('Please Connect Wallet First'); // 或者使用更高级的弹窗提示
+        return;
+      }
+      const payload = {
+        token: "labb",
+        address: ordinalsAddress
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      };
+      const response = await fetch(`${claim_endpoint}/claim`, requestOptions);
+      const responseData = await response.json();
+      alert(responseData.message);
+      console.log("claimCall address:"+ordinalsAddress+",result:"+responseData.message)
+    }
+
+    const onConnectClick = async () => {
+      if (ordinalsAddress!=''){
+        checkClaim();
+        return;
+      }
+      const getAddressOptions = {
+        payload: {
+          purposes: ["ordinals", "payment"],
+          message: "Address for receiving Ordinals",
+          network: {
+            type: NETWORK,
+          },
+        },
+        onFinish: async (response) => {
+          setOrdinalsAddress(response.addresses[0].address);
+          setPaymentAddress(response.addresses[1].address);
+          setOrdinalsPublicKey(response.addresses[0].publicKey);
+          setPaymentPublicKey(response.addresses[1].publicKey);
+          checkClaim(response.addresses[0].address);
+        },
+        onCancel: () => alert("Request Cancel"),
+      };
+      await getAddress(getAddressOptions);
+      // 如果您有fetchContracts函数，请取消下面这行的注释
+      // this.fetchContracts(); 
+    };
+
+    const checkClaim = async (address)=>{
+      const payload = {
+        token: "labb",
+        address: address
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      };
+      const response = await fetch(`${claim_endpoint}/query`, requestOptions);
+      const responseData = await response.json();
+      setDepositeAmount(responseData.amount/100000000);
+      console.log("claimCall address:"+ordinalsAddress+",result:"+responseData.amount)
+    }
+
+
+    const formatAddress = (address) => {
+      if (!address) return "";
+      return `${address.slice(0, 4)}...${address.slice(-4)}`;
+    };
     return (
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="mt-14">
@@ -103,8 +183,7 @@ const LabbClaim = () => {
                       background: "transparent",
                       outline: "none",
                     }}
-                    type="number"
-                    min="0"
+                    
                     value={depositeAmount}
                     onChange={handleDepositeAmountChange}
                   />
@@ -148,7 +227,7 @@ const LabbClaim = () => {
                     </span>
                   </button>
                   <span className="ml-3 absolute text-white inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    0.00
+                    {depositeAmount}
                   </span>
                 </button>
               </div>
@@ -158,9 +237,16 @@ const LabbClaim = () => {
               className="flex justify-center mt-2"
               style={{ textAlign: "right" }}
             >
-              <button className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm">
-                Connect Wallet to Claim
-              </button>
+              {!ordinalsAddress && (
+                <button onClick={onConnectClick} className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm">
+                  {ordinalsAddress ? formatAddress(ordinalsAddress) : "Connect Wallet to Claim"}
+                </button>
+              )}
+              {ordinalsAddress && (
+                <button onClick={onClaimClick} className="bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm">
+                  Claim
+                </button>
+              )}
             </div>
           </ClaimBox>
         </div>
