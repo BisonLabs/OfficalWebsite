@@ -15,7 +15,7 @@ const LabbClaim = () => {
     const [ordinalsPublicKey, setOrdinalsPublicKey] = useState("");
     const [paymentPublicKey, setPaymentPublicKey] = useState("");  
     const [NETWORK,setNetwork] = useState("Testnet");
-    const [claim_endpoint,setClaim_endpoint] = useState("http://209.141.49.238:8072");
+    const [claim_endpoint,setClaim_endpoint] = useState("http://testnet.bisonlabs.io/labb_endpoint");
 
 
     
