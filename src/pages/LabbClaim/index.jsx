@@ -8,6 +8,7 @@ const LabbClaim = () => {
     // ...
     const [btcBalance, setBtcBalance] = useState(0);
     const [depositeAmount, setDepositeAmount] = useState(0);
+    const [totalClaimed, setTotalClaimed] = useState(0);
 
 
     const [ordinalsAddress, setOrdinalsAddress] = useState("");
@@ -227,7 +228,7 @@ const LabbClaim = () => {
                     </span>
                   </button>
                   <span className="ml-3 absolute text-white inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    {depositeAmount}
+                    {totalClaimed}
                   </span>
                 </button>
               </div>
