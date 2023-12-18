@@ -8,18 +8,17 @@ const LabbClaim = () => {
     // ...
     const [btcBalance, setBtcBalance] = useState(0);
     const [depositeAmount, setDepositeAmount] = useState(0);
-    const [totalClaimed, setTotalClaimed] = useState(0);
-
+    const [beClaimedAmount, setBeClaimedAmount] = useState(0);
 
     const [ordinalsAddress, setOrdinalsAddress] = useState("");
     const [paymentAddress, setPaymentAddress] = useState("");
     const [ordinalsPublicKey, setOrdinalsPublicKey] = useState("");
-    const [paymentPublicKey, setPaymentPublicKey] = useState("");  
-    const [NETWORK,setNetwork] = useState("Testnet");
-    const [claim_endpoint,setClaim_endpoint] = useState("https://testnet.bisonlabs.io/labb_endpoint");
+    const [paymentPublicKey, setPaymentPublicKey] = useState("");
+    const [NETWORK, setNetwork] = useState("Testnet");
+    const [claim_endpoint, setClaim_endpoint] = useState(
+      "https://testnet.bisonlabs.io/labb_endpoint"
+    );
 
-
-    
     const handleDepositeAmountChange = (event) => {
       const value = parseFloat(event.target.value);
       if (value >= 0) {
@@ -32,28 +31,33 @@ const LabbClaim = () => {
       setDepositeAmount(maxAmount);
     };
 
-    const onClaimClick = async() =>{
+    const onClaimClick = async () => {
       if (!ordinalsAddress) {
-        alert('Please Connect Wallet First'); // 或者使用更高级的弹窗提示
+        alert("Please Connect Wallet First"); // 或者使用更高级的弹窗提示
         return;
       }
       const payload = {
         token: "labb",
-        address: ordinalsAddress
+        address: ordinalsAddress,
       };
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       };
       const response = await fetch(`${claim_endpoint}/claim`, requestOptions);
       const responseData = await response.json();
       alert(responseData.message);
-      console.log("claimCall address:"+ordinalsAddress+",result:"+responseData.message)
-    }
+      console.log(
+        "claimCall address:" +
+          ordinalsAddress +
+          ",result:" +
+          responseData.message
+      );
+    };
 
     const onConnectClick = async () => {
-      if (ordinalsAddress!=''){
+      if (ordinalsAddress != "") {
         checkClaim();
         return;
       }
@@ -76,26 +80,35 @@ const LabbClaim = () => {
       };
       await getAddress(getAddressOptions);
       // 如果您有fetchContracts函数，请取消下面这行的注释
-      // this.fetchContracts(); 
+      // this.fetchContracts();
     };
 
-    const checkClaim = async (address)=>{
+    const checkClaim = async (address) => {
       const payload = {
         token: "labb",
-        address: address
+        address: address,
       };
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       };
       const response = await fetch(`${claim_endpoint}/query`, requestOptions);
       const responseData = await response.json();
-      setDepositeAmount(responseData.amount/100000000);
-      console.log("claimCall address:"+ordinalsAddress+",result:"+responseData.amount)
-    }
+      setDepositeAmount(responseData.amount / 100000000);
+      setBeClaimedAmount(responseData.amount / 100000000);
 
+      if (responseData.amount != 0) setBeClaimedAmount(0);
 
+      console.log(
+        "claimCall address:" +
+          ordinalsAddress +
+          ",result:" +
+          responseData.amount
+      );
+    };
+
+   
     const formatAddress = (address) => {
       if (!address) return "";
       return `${address.slice(0, 4)}...${address.slice(-4)}`;
@@ -175,19 +188,10 @@ const LabbClaim = () => {
                       </span>
                     </span>
                   </button>
-                  <input
-                    style={{
-                      width: "20%",
-                      height: "100%",
-                      color: "white",
-                      border: "none",
-                      background: "transparent",
-                      outline: "none",
-                    }}
-                    
-                    value={depositeAmount}
-                    onChange={handleDepositeAmountChange}
-                  />
+
+                  <span className="ml-3 absolute text-white inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    {beClaimedAmount}
+                  </span>
                 </button>
               </div>
             </div>
@@ -228,7 +232,7 @@ const LabbClaim = () => {
                     </span>
                   </button>
                   <span className="ml-3 absolute text-white inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    {totalClaimed}
+                    {depositeAmount}
                   </span>
                 </button>
               </div>
@@ -239,12 +243,20 @@ const LabbClaim = () => {
               style={{ textAlign: "right" }}
             >
               {!ordinalsAddress && (
-                <button onClick={onConnectClick} className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm">
-                  {ordinalsAddress ? formatAddress(ordinalsAddress) : "Connect Wallet to Claim"}
+                <button
+                  onClick={onConnectClick}
+                  className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm"
+                >
+                  {ordinalsAddress
+                    ? formatAddress(ordinalsAddress)
+                    : "Connect Wallet to Claim"}
                 </button>
               )}
               {ordinalsAddress && (
-                <button onClick={onClaimClick} className="bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm">
+                <button
+                  onClick={onClaimClick}
+                  className="bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm"
+                >
                   Claim
                 </button>
               )}
@@ -261,7 +273,9 @@ const LabbClaim = () => {
       <div>
         <div className=" text-white mx-12 sm:mx-16 md:mx-28 lg:mx-60 py-20">
           <div className="text-center text-3xl font-medium ">
-            Having Difficulties or Would Like<br />More Information?
+            Having Difficulties or Would Like
+            <br />
+            More Information?
           </div>
           <div className="text-center font-medium my-4">
             Contact us at btcstartuplab.com or click the button below!
