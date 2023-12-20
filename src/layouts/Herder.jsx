@@ -1,7 +1,14 @@
 import { useState } from "react";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { getAddress } from "sats-connect";
+import {
+  connectWallet,
+  disconnectWallet,
+  updateWalletInfo,
+} from "../store/walletActions.js";
 
 const navigation = [
   { name: "Ecosystem", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
@@ -11,18 +18,8 @@ const navigation = [
   // { name: "LABB Token Claim(COMING SOON)", href: "/claim" },
 ];
 
-export default function Header() {
+const Header = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
-  const handleAccept = () => {
-    // Add logic for when the user accepts
-    setModalOpen(false); // Close the modal
-  };
-
-  const handleDecline = () => {
-    // Add logic for when the user declines
-    setModalOpen(false); // Close the modal
-  };
 
   const handleClose = () => {
     setModalOpen(false); // Close the modal
@@ -30,14 +27,9 @@ export default function Header() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Set useNavigate for the Header Items
-
-  const navigate = useNavigate();
-  const handleClickBridge = () => {
-    navigate("/bridge");
-  };
-  const handleClickClaim = () => {
-    navigate("/claim");
+  const formatAddress = (address) => {
+    if (!address) return "";
+    return `${address.slice(0, 4)}...${address.slice(-4)}`;
   };
 
   return (
@@ -93,13 +85,24 @@ export default function Header() {
           </div>
 
           {/* <div className="hidden lg:flex lg:justify-end ml-10">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="bg-amber-500 font-sans text-black rounded-full py-1 w-28 font-bold"
-              type="button"
-            >
-              Connect
-            </button>
+            {!ordinalsAddress && (
+              <button
+                onClick={() => setModalOpen(true)}
+                className="bg-amber-500 font-sans text-black rounded-full py-1 w-28 font-bold"
+                type="button"
+              >
+                Connect
+              </button>
+            )}
+            {ordinalsAddress && (
+              <button
+                onClick={() => setModalOpen(true)}
+                className="bg-amber-500 font-sans text-black rounded-full py-1 w-28 font-bold"
+                type="button"
+              >
+                {formatAddress(ordinalsAddress)}
+              </button>
+            )}
           </div> */}
         </nav>
 
@@ -179,13 +182,13 @@ export default function Header() {
             <div className="text-white font-sans text-center">
               <p className="text-3xl pb-16">Connect your Xverse Wallet</p>
               <div className="flex justify-center">
-                <a href="/">
+                <button>
                   <img
                     src="/svg/connection-icon.svg"
                     alt="Connect-Logo"
                     className="h-24 border border-white px-4 py-8 rounded-3xl"
                   />
-                </a>
+                </button>
               </div>
               <p className="text-sm py-10">
                 Click to connect of create Xverse wallet
@@ -196,4 +199,19 @@ export default function Header() {
       )}
     </div>
   );
-}
+};
+
+// const mapStateToProps = (state) => ({
+//   connected: state.connected,
+//   address: state.address,
+// });
+
+// const mapDispatchToProps = {
+//   connectWallet,
+//   disconnectWallet,
+//   updateWalletInfo,
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default Header;

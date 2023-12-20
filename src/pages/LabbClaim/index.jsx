@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import ClaimBox from "../../components/ClaimBox";
 import { getAddress } from "sats-connect";
+import { connect } from "react-redux";
+// import { connectWallet, disconnectWallet, updateWalletInfo } from "../../store/walletActions.js";
 
 const LabbClaim = () => {
   // Content
   const Content = () => {
     // ...
     const [btcBalance, setBtcBalance] = useState(0);
-    const [depositeAmount, setDepositeAmount] = useState(0);
     const [beClaimedAmount, setBeClaimedAmount] = useState(0);
+    const [totalClaimedAmount, setTotalClaimedAmount] = useState(0);
 
     const [ordinalsAddress, setOrdinalsAddress] = useState("");
     const [paymentAddress, setPaymentAddress] = useState("");
@@ -19,18 +21,26 @@ const LabbClaim = () => {
       "https://testnet.bisonlabs.io/labb_endpoint"
     );
 
+    // Modal setting
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClose = () => {
+      setModalOpen(false); // Close the modal
+    };
+
+    // Handel Deposite setting
     const handleDepositeAmountChange = (event) => {
       const value = parseFloat(event.target.value);
       if (value >= 0) {
         // Only update the state if the value is non-negative
-        setDepositeAmount(value);
+        setTotalClaimedAmount(value);
       }
     };
     const handleMaxDeposite = () => {
       const maxAmount = Math.max(btcBalance - 0.0001, 0);
-      setDepositeAmount(maxAmount);
+      setTotalClaimedAmount(maxAmount);
     };
 
+    // Claim Click
     const onClaimClick = async () => {
       if (!ordinalsAddress) {
         alert("Please Connect Wallet First"); // 或者使用更高级的弹窗提示
@@ -56,10 +66,11 @@ const LabbClaim = () => {
       );
     };
 
+    // Connect Wallet Button Click
     const onConnectClick = async () => {
       if (ordinalsAddress != "") {
         checkClaim();
-        return;
+        // return;
       }
       const getAddressOptions = {
         payload: {
@@ -75,12 +86,25 @@ const LabbClaim = () => {
           setOrdinalsPublicKey(response.addresses[0].publicKey);
           setPaymentPublicKey(response.addresses[1].publicKey);
           checkClaim(response.addresses[0].address);
+          handleClose();
         },
         onCancel: () => alert("Request Cancel"),
       };
       await getAddress(getAddressOptions);
       // 如果您有fetchContracts函数，请取消下面这行的注释
       // this.fetchContracts();
+      // connectWallet(ordinalsAddress, ordinalsPublicKey);
+      // updateWalletInfo(ordinalsAddress, ordinalsPublicKey);
+    };
+
+    // Disconnect Wallet Button Click
+
+    const onDisconnectClick = () => {
+      setPaymentAddress(undefined);
+      setPaymentPublicKey(undefined);
+      setOrdinalsAddress(undefined);
+      setOrdinalsPublicKey(undefined);
+      checkClaim();
     };
 
     const checkClaim = async (address) => {
@@ -95,10 +119,8 @@ const LabbClaim = () => {
       };
       const response = await fetch(`${claim_endpoint}/query`, requestOptions);
       const responseData = await response.json();
-      setDepositeAmount(responseData.amount / 100000000);
-      setBeClaimedAmount(responseData.amount / 100000000);
-
-      if (responseData.amount != 0) setBeClaimedAmount(0);
+      setTotalClaimedAmount(responseData.totalClaimedAmount / 100000000);
+      setBeClaimedAmount(responseData.beClaimedAmount / 100000000);
 
       console.log(
         "claimCall address:" +
@@ -106,13 +128,15 @@ const LabbClaim = () => {
           ",result:" +
           responseData.amount
       );
+      console.log("responseData: ", responseData);
     };
 
-   
+    // Wallet Address Format
     const formatAddress = (address) => {
       if (!address) return "";
-      return `${address.slice(0, 4)}...${address.slice(-4)}`;
+      return `${address.slice(0, 8)}...${address.slice(-8)}`;
     };
+
     return (
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="mt-14">
@@ -150,9 +174,20 @@ const LabbClaim = () => {
 
         <div className="flex justify-center">
           <ClaimBox ixBackground={true}>
-            <div className="text-center text-sm text-gray-400 p-4">
-              Connect your wallet to see how much LABB you are eligible to claim
-            </div>
+            {!ordinalsAddress && (
+              <div className="text-center text-sm text-gray-400 p-4">
+                Connect your wallet to see how much LABB you are eligible to
+                claim
+              </div>
+            )}
+            {ordinalsAddress && (
+              <div className="text-center text-sm ">
+                <p className="text-gray-400 p-4">Connected</p>
+                <p className="text-yellow-500">
+                  {formatAddress(ordinalsAddress)}
+                </p>
+              </div>
+            )}
 
             <div className="mt-5">
               <label
@@ -232,7 +267,7 @@ const LabbClaim = () => {
                     </span>
                   </button>
                   <span className="ml-3 absolute text-white inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    {depositeAmount}
+                    {totalClaimedAmount}
                   </span>
                 </button>
               </div>
@@ -244,25 +279,83 @@ const LabbClaim = () => {
             >
               {!ordinalsAddress && (
                 <button
-                  onClick={onConnectClick}
+                  onClick={() => setModalOpen(true)}
                   className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm"
                 >
-                  {ordinalsAddress
+                  {/* {ordinalsAddress
                     ? formatAddress(ordinalsAddress)
-                    : "Connect Wallet to Claim"}
+                    : "Connect Wallet to Claim"} */}
+                  Connect Wallet to Claim
                 </button>
               )}
               {ordinalsAddress && (
-                <button
-                  onClick={onClaimClick}
-                  className="bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm"
-                >
-                  Claim
-                </button>
+                <div>
+                  <button
+                    onClick={onClaimClick}
+                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-10 px-8 py-2 w-full text-sm"
+                  >
+                    Claim
+                  </button>
+                  <button
+                    onClick={onDisconnectClick}
+                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-10 px-8 py-2 w-full text-sm"
+                  >
+                    Disconnect
+                  </button>
+                </div>
               )}
             </div>
           </ClaimBox>
         </div>
+        {modalOpen && (
+          <div
+            id="static-modal"
+            data-modal-backdrop="static"
+            tabIndex="-1"
+            aria-hidden="true"
+            className="fixed top-0 right-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50 text-white "
+          >
+            <div className="relative p-4 w-full max-w-2xl border border-white rounded-3xl bg-black">
+              <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-8 ms-auto inline-flex justify-center items-center  "
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="text-white font-sans text-center">
+                <p className="text-3xl my-5">Connect your Wallet</p>
+                <div className="flex justify-center flex-col items-center">
+                  <button
+                    onClick={onConnectClick}
+                    className="flex justify-center items-center border border-white rounded-3xl px-5 my-5"
+                  >
+                    <img
+                      src="/svg/xverse-wallet.svg"
+                      alt="Connect-Logo"
+                      className="h-24"
+                    />
+                    <p className="text-5xl">Xverse</p>
+                  </button>
+                  <button className="flex justify-center items-center border border-white rounded-3xl px-5 my-5">
+                    <img
+                      src="/svg/unisat-wallet.svg"
+                      alt="Connect-Logo"
+                      className="h-24"
+                    />
+                    <p className="text-5xl">UniSat</p>
+                  </button>
+                </div>
+                <p className="text-sm py-5">
+                  Click to connect of create wallet
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -297,5 +390,17 @@ const LabbClaim = () => {
     </div>
   );
 };
+
+// const mapStateToProps = (state) => ({
+//   connected: state.connected,
+//   address: state.address,
+// });
+
+// const mapDispatchToProps = {
+//   connectWallet,
+//   disconnectWallet,
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(LabbClaim);
 
 export default LabbClaim;
