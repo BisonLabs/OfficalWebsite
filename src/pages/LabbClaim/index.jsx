@@ -186,7 +186,7 @@ const LabbClaim = () => {
           </div>
           <a href="https://btcstartuplab.info/LABBWL" target="_blank">
             <button className=" bg-amber-500 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
-              Submit For Here
+              Submit Form Here
             </button>
           </a>
         </div>
