@@ -18,12 +18,12 @@ const Dashboard = () => {
   const words = [
     "STABLECOINS",
     "LENDING",
-    "DeFi",
-    "DERIVATIVE",
-    "PREDICTION MARKET",
+    "BRIDGES",
     "DEX",
-    "BRIDGE",
-    "GAME",
+    "DERIVATIVES",
+    "GAMES",
+    "DeFi",
+    "ANYTHING",
   ];
 
   const Content = () => {

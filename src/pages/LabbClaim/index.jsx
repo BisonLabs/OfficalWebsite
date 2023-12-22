@@ -431,7 +431,7 @@ const LabbClaim = () => {
             Contact us at btcstartuplab.com or click the button below!
           </div>
           <div className="flex justify-center items-center">
-            <a href="/">
+            <a href="https://btcstartuplab.com/" target="_blank">
               <button className=" bg-yellow-600 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
                 Click for more info!
               </button>
