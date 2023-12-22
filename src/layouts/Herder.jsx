@@ -12,7 +12,7 @@ import {
 
 const navigation = [
   { name: "Ecosystem", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
-  { name: "Bridge", href: "http://testnet.bisonlabs.io/bridge" },
+  { name: "Bridge", href: "https://app.bisonlabs.io/bridge/" },
   { name: "Developers", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
   { name: "About", href: "https://linktr.ee/bisonlabs" },
 ];
