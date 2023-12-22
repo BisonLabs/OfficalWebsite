@@ -40,15 +40,15 @@ const Header = () => {
   return (
     <div className="bg-white">
       <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
-        <span className="max-w-screen-md flex-wrap grid gap-3 lg:grid-cols-3 sm:grid-cols-1 items-center justify-center text-center mx-auto">
-          <span className="text-xl font-bold">ANNOUNCEMENT</span>
-          <span>LABB Claim Launched!</span>
-          <span>
+        <span className="max-w-screen-lg flex-wrap grid gap-3 lg:grid-cols-5 sm:grid-cols-1 items-center justify-center text-center mx-auto">
+          <span className="lg:col-span-1 text-xl font-bold">ANNOUNCEMENT</span>
+          <span className="lg:col-span-3">LABB Claim Will Be Available December 22, 2023 Between 4-9PM PST</span>
+          <span className="lg:col-span-1">
             <button
               className="bg-black font-sans text-amber-500 rounded-full py-2 w-48"
               onClick={handleClickClaim}
             >
-              CLAIM NOW
+              Go to Claim Page
             </button>
           </span>
         </span>
