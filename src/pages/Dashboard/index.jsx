@@ -66,7 +66,7 @@ const Dashboard = () => {
                 Read Docs
               </button>
             </a>
-            <a href="http://testnet.bisonlabs.io/bridge" target="_blank">
+            <a href="https://app.bisonlabs.io/bridge/" target="_blank">
               <button className=" bg-black text-white border-2 border-solid border-white hover:bg-white hover:text-black rounded transition duration-300 ease-in-out mr-10 mt-14 w-32 py-2">
                 Bridge Assets
               </button>
