@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ClaimBox from "../../components/ClaimBox";
 import { getAddress } from "sats-connect";
 import { connect } from "react-redux";
@@ -11,14 +11,24 @@ const LabbClaim = () => {
     const [btcBalance, setBtcBalance] = useState(0);
     const [beClaimedAmount, setBeClaimedAmount] = useState(0);
     const [totalClaimedAmount, setTotalClaimedAmount] = useState(0);
+    const totalClaimedAmountRef = useRef(totalClaimedAmount);
+    const [claimStatusMessage, setClaimStatusMessage] = useState("");
+    const claimStatusMessageStyle =
+      claimStatusMessage === "Congratulations on your claim!"
+        ? "text-sm text-center text-green-600"
+        : "text-xs text-center";
+
+    useEffect(() => {
+      totalClaimedAmountRef.current = totalClaimedAmount;
+    }, [totalClaimedAmount]);
 
     const [ordinalsAddress, setOrdinalsAddress] = useState("");
     const [paymentAddress, setPaymentAddress] = useState("");
     const [ordinalsPublicKey, setOrdinalsPublicKey] = useState("");
     const [paymentPublicKey, setPaymentPublicKey] = useState("");
-    const [NETWORK, setNetwork] = useState("Testnet");
+    const [NETWORK, setNetwork] = useState("Mainnet");
     const [claim_endpoint, setClaim_endpoint] = useState(
-      "https://testnet.bisonlabs.io/labb_endpoint"
+      " https://app.bisonlabs.io/labb_endpoint"
     );
 
     // Modal setting
@@ -40,38 +50,12 @@ const LabbClaim = () => {
       setTotalClaimedAmount(maxAmount);
     };
 
-    // Claim Click
-    const onClaimClick = async () => {
-      if (!ordinalsAddress) {
-        alert("Please Connect Wallet First"); // 或者使用更高级的弹窗提示
-        return;
-      }
-      const payload = {
-        token: "labb",
-        address: ordinalsAddress,
-      };
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      };
-      const response = await fetch(`${claim_endpoint}/claim`, requestOptions);
-      const responseData = await response.json();
-      alert(responseData.message);
-      console.log(
-        "claimCall address:" +
-          ordinalsAddress +
-          ",result:" +
-          responseData.message
-      );
-    };
-
     // Connect Wallet Button Click
     const onConnectClick = async () => {
-      if (ordinalsAddress != "") {
-        checkClaim();
-        // return;
-      }
+      // if (ordinalsAddress != "") {
+      //   checkClaim();
+      //   return;
+      // }
       const getAddressOptions = {
         payload: {
           purposes: ["ordinals", "payment"],
@@ -90,6 +74,7 @@ const LabbClaim = () => {
         },
         onCancel: () => alert("Request Cancel"),
       };
+
       await getAddress(getAddressOptions);
       // 如果您有fetchContracts函数，请取消下面这行的注释
       // this.fetchContracts();
@@ -98,15 +83,53 @@ const LabbClaim = () => {
     };
 
     // Disconnect Wallet Button Click
-
     const onDisconnectClick = () => {
       setPaymentAddress(undefined);
       setPaymentPublicKey(undefined);
       setOrdinalsAddress(undefined);
       setOrdinalsPublicKey(undefined);
       checkClaim();
+      setClaimStatusMessage("");
     };
 
+    // Claim Click
+    const onClaimClick = async () => {
+      if (!ordinalsAddress) {
+        alert("Please Connect Wallet First"); // 或者使用更高级的弹窗提示
+        return;
+      }
+      const payload = {
+        token: "labb",
+        address: ordinalsAddress,
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      };
+      const response = await fetch(`${claim_endpoint}/claim`, requestOptions);
+      const responseData = await response.json();
+
+      alert(responseData.message);
+
+      await checkClaim(ordinalsAddress);
+      console.log(
+        "Previous totalClaimedAmount:",
+        totalClaimedAmountRef.current
+      );
+      console.log("Current totalClaimedAmount:", totalClaimedAmount);
+
+      if (totalClaimedAmount > totalClaimedAmountRef.current) {
+        setClaimStatusMessage("Congratulations on your claim!");
+      }
+      if (totalClaimedAmount == totalClaimedAmountRef.current) {
+        setClaimStatusMessage(
+          "You have no more to claim. Join our Discord to find out how you can earn more $LABB tokens!"
+        );
+      }
+    };
+
+    // Check Claim
     const checkClaim = async (address) => {
       const payload = {
         token: "labb",
@@ -119,16 +142,10 @@ const LabbClaim = () => {
       };
       const response = await fetch(`${claim_endpoint}/query`, requestOptions);
       const responseData = await response.json();
-      setTotalClaimedAmount(responseData.totalClaimedAmount / 100000000);
       setBeClaimedAmount(responseData.beClaimedAmount / 100000000);
+      setTotalClaimedAmount(responseData.totalClaimedAmount / 100000000);
 
-      console.log(
-        "claimCall address:" +
-          ordinalsAddress +
-          ",result:" +
-          responseData.amount
-      );
-      console.log("responseData: ", responseData);
+      console.log("checkClaim responseData: ", responseData);
     };
 
     // Wallet Address Format
@@ -167,9 +184,11 @@ const LabbClaim = () => {
               considered for the claim.
             </p>
           </div>
-          <button className=" bg-amber-500 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
-            Submit For Here
-          </button>
+          <a href="https://btcstartuplab.info/LABBWL" target="_blank">
+            <button className=" bg-amber-500 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
+              Submit For Here
+            </button>
+          </a>
         </div>
 
         <div className="flex justify-center">
@@ -282,23 +301,23 @@ const LabbClaim = () => {
                   onClick={() => setModalOpen(true)}
                   className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out my-10 px-8 py-2 w-full text-sm"
                 >
-                  {/* {ordinalsAddress
-                    ? formatAddress(ordinalsAddress)
-                    : "Connect Wallet to Claim"} */}
                   Connect Wallet to Claim
                 </button>
               )}
               {ordinalsAddress && (
-                <div>
+                <div className="w-full">
                   <button
                     onClick={onClaimClick}
-                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-10 px-8 py-2 w-full text-sm"
+                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-10 mb-5 px-8 py-2 w-full text-sm"
                   >
                     Claim
                   </button>
+                  <p className={claimStatusMessageStyle}>
+                    {claimStatusMessage}
+                  </p>
                   <button
                     onClick={onDisconnectClick}
-                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-10 px-8 py-2 w-full text-sm"
+                    className=" bg-black text-amber-500 border-white border hover:bg-amber-500 hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2 w-full text-sm"
                   >
                     Disconnect
                   </button>
@@ -307,7 +326,7 @@ const LabbClaim = () => {
             </div>
           </ClaimBox>
         </div>
-        {modalOpen && (
+        {/* {modalOpen && (
           <div
             id="static-modal"
             data-modal-backdrop="static"
@@ -327,7 +346,7 @@ const LabbClaim = () => {
               </div>
 
               <div className="text-white font-sans text-center">
-                <p className="text-3xl my-5">Connect your Wallet</p>
+                <p className="text-3xl my-5">Connect your Xverse Wallet</p>
                 <div className="flex justify-center flex-col items-center">
                   <button
                     onClick={onConnectClick}
@@ -338,7 +357,7 @@ const LabbClaim = () => {
                       alt="Connect-Logo"
                       className="h-24"
                     />
-                    <p className="text-5xl">Xverse</p>
+                    <p className="text-8xl font-medium pb-4">verse</p>
                   </button>
                   <button className="flex justify-center items-center border border-white rounded-3xl px-5 my-5">
                     <img
@@ -350,7 +369,45 @@ const LabbClaim = () => {
                   </button>
                 </div>
                 <p className="text-sm py-5">
-                  Click to connect of create wallet
+                  Click to connect of create Xverse wallet
+                </p>
+              </div>
+            </div>
+          </div>
+        )} */}
+
+        {modalOpen && (
+          <div
+            id="static-modal"
+            data-modal-backdrop="static"
+            tabIndex="-1"
+            aria-hidden="true"
+            className="fixed top-0 right-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50 text-white "
+          >
+            <div className="relative p-4 w-full max-w-2xl border border-white rounded-3xl bg-black">
+              <div className="flex items-center justify-between p-4 md:p-5">
+                <button
+                  type="button"
+                  className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-8 ms-auto inline-flex justify-center items-center  "
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="text-white font-sans text-center">
+                <p className="text-3xl pb-16">Connect your Xverse Wallet</p>
+                <div className="flex justify-center">
+                  <button onClick={onConnectClick}>
+                    <img
+                      src="/svg/connection-icon.svg"
+                      alt="Connect-Logo"
+                      className="h-24 border border-white px-4 py-8 rounded-3xl"
+                    />
+                  </button>
+                </div>
+                <p className="text-sm py-10">
+                  Click to connect of create Xverse wallet
                 </p>
               </div>
             </div>
@@ -374,9 +431,11 @@ const LabbClaim = () => {
             Contact us at btcstartuplab.com or click the button below!
           </div>
           <div className="flex justify-center items-center">
-            <button className=" bg-yellow-600 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
-              Click for more info!
-            </button>
+            <a href="/">
+              <button className=" bg-yellow-600 text-black font-bold border-solid border-white  hover:bg-white hover:text-black rounded-full transition duration-300 ease-in-out mt-5 px-8 py-2">
+                Click for more info!
+              </button>
+            </a>
           </div>
         </div>
       </div>

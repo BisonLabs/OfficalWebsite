@@ -21,7 +21,7 @@ const Footer = () => {
                 <input
                   type="email"
                   name="email"
-                  className="xl:w-6/12 lg:w-full md:w-6/12 sm:w-6/12 xs:w-6/12 peer ... text-lg p-4 mt-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-amber-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                  className="xl:w-6/12 lg:w-full md:w-6/12 sm:w-6/12 xs:w-6/12 peer ... text-lg text-black p-4 mt-1 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:ring-amber-500 block w-full rounded-md sm:text-sm focus:ring-1"
                   placeholder="mail@bisonlabs.com"
                 />
                 <p className="mt-2 invisible peer-invalid:visible text-pink-600 text-sm">
@@ -39,17 +39,17 @@ const Footer = () => {
             <ul className="text-sm">
               <p className="text-lg font-bold mb-6">Developers</p>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Developer portal
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Docs
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Github
                 </a>
               </li>
@@ -61,22 +61,22 @@ const Footer = () => {
             <ul className="text-sm">
               <p className="text-lg font-bold mb-6">Resources</p>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Technology
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Glossary
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Blog
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Resources
                 </a>
               </li>
@@ -88,32 +88,32 @@ const Footer = () => {
             <ul className="text-sm">
               <p className="text-lg font-bold mb-6">Misc</p>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Brand
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Press
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Careers
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Terms of Service
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Privacy Policy
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#0" className="hover:text-amber-500">
+                <a className="hover:text-amber-500">
                   Team
                 </a>
               </li>

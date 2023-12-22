@@ -4,7 +4,7 @@ import { Default } from "react-awesome-spinners";
 const ClaimBox = ({ isBackground, imgURL, gap, header, isLoading, center, children, height }) => {
   return (
     <div
-      className={` ${!height && "h-[470px] lg:w-[350px]"}  ${
+      className={` ${!height && "h-[500px] lg:w-[350px]"}  ${
         isBackground && "bg-gradient-card1"
       } ${center && "flex justify-center items-center"} border-2 border-white text-white text-lg lg:mx-20 rounded-[30px] p-5 transition flex flex-col relative my-14`}
       style={{

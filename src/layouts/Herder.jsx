@@ -15,10 +15,15 @@ const navigation = [
   { name: "Bridge", href: "http://testnet.bisonlabs.io/bridge" },
   { name: "Developers", href: "https://dmaster-1.gitbook.io/bisonlabs/" },
   { name: "About", href: "https://linktr.ee/bisonlabs" },
-  // { name: "LABB Token Claim(COMING SOON)", href: "/claim" },
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
+  const handleClickClaim = () => {
+    navigate("claim");
+    window.scrollTo(0, 0);
+  };
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleClose = () => {
@@ -35,12 +40,15 @@ const Header = () => {
   return (
     <div className="bg-white">
       <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
-        <span className="max-w-screen-md flex-wrap grid gap-3 lg:grid-cols-3 sm:grid-cols-1 items-center justify-around text-center mx-auto">
+        <span className="max-w-screen-md flex-wrap grid gap-3 lg:grid-cols-3 sm:grid-cols-1 items-center justify-center text-center mx-auto">
           <span className="text-xl font-bold">ANNOUNCEMENT</span>
-          <span>LABB Claim COMING SOON!</span>
+          <span>LABB Claim Launched!</span>
           <span>
-            <button className="bg-black font-sans text-amber-500 rounded-full py-2 w-48">
-              COMING SOON
+            <button
+              className="bg-black font-sans text-amber-500 rounded-full py-2 w-48"
+              onClick={handleClickClaim}
+            >
+              CLAIM NOW
             </button>
           </span>
         </span>
@@ -76,12 +84,18 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-lg font-sans leading-6 text-white hover:text-amber-500"
+                className="text-lg font-sans leading-6 text-white hover:text-amber-500 font-medium"
                 target="_blank"
               >
-                <div className="font-medium">{item.name}</div>
+                {item.name}
               </a>
             ))}
+            <button
+              onClick={handleClickClaim}
+              className="text-lg font-sans leading-6 text-white hover:text-amber-500 font-medium"
+            >
+              LABB Token Claim
+            </button>
           </div>
 
           {/* <div className="hidden lg:flex lg:justify-end ml-10">
@@ -144,6 +158,12 @@ const Header = () => {
                       {item.name}
                     </a>
                   ))}
+                  <a
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-amber-500 cursor-pointer"
+                    onClick={handleClickClaim}
+                  >
+                    LABB Token Claim
+                  </a>
                 </div>
                 {/* <div className="py-6">
                   <button

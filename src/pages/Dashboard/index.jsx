@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 const Word = ({ word, isActive }) => {
   return (
     <p
-      className={`text-amber-500 text-3xl sm:text-5xl lg:text-6xl xl:text-8xl font-medium ${
+      className={`text-amber-500 font-medium text-3xl sm:text-5xl lg:text-5xl xl:text-6xl ${
         isActive ? "animate-bounce" : "opacity-0"
-      }`}
+      } `}
     >
       {word}
     </p>
@@ -15,7 +15,16 @@ const Word = ({ word, isActive }) => {
 
 const Dashboard = () => {
   // Content
-  const words = ["STABLECOINS", "LENDING", "DeFi"];
+  const words = [
+    "STABLECOINS",
+    "LENDING",
+    "DeFi",
+    "DERIVATIVE",
+    "PREDICTION MARKET",
+    "DEX",
+    "BRIDGE",
+    "GAME",
+  ];
 
   const Content = () => {
     const navigate = useNavigate();
@@ -37,16 +46,13 @@ const Dashboard = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="mt-14">
-            <p className="text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-white font-medium">
+            <p className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl text-white font-medium">
               BUILD
             </p>
             <div className="flex">
               <Word word={words[currentWordIndex]} isActive={true} />
             </div>
-            {/* <p className="animate-bounce text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-amber-500 font-medium">
-              STABLECOINS
-            </p> */}
-            <p className="text-3xl sm:text-5xl lg:text-6xl xl:text-8xl text-white font-medium">
+            <p className="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl text-white font-medium">
               ON BISON
             </p>
             <p>
@@ -192,10 +198,7 @@ const Dashboard = () => {
         "/img/menuImages/discord-black.webp.png",
         "https://discord.gg/NcyRQ6esdR",
       ],
-      [
-        "/img/menuImages/github-black.webp.png",
-        "https://github.com/BisonLabs",
-      ],
+      ["/img/menuImages/github-black.webp.png", "https://github.com/BisonLabs"],
       [
         "/img/menuImages/telegram-black.webp.png",
         "https://t.me/+a5g-srOWtthkNGI5",
