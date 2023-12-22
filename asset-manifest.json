@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.0a6a60e3.css",
-    "main.js": "/static/js/main.cda6e3ea.js",
+    "main.js": "/static/js/main.ce9a9000.js",
     "static/js/787.d4aba7ab.chunk.js": "/static/js/787.d4aba7ab.chunk.js",
     "static/media/OffBitTrial-DotBold.otf": "/static/media/OffBitTrial-DotBold.fab92b54151ff009cdd7.otf",
     "index.html": "/index.html",
     "main.0a6a60e3.css.map": "/static/css/main.0a6a60e3.css.map",
-    "main.cda6e3ea.js.map": "/static/js/main.cda6e3ea.js.map",
+    "main.ce9a9000.js.map": "/static/js/main.ce9a9000.js.map",
     "787.d4aba7ab.chunk.js.map": "/static/js/787.d4aba7ab.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0a6a60e3.css",
-    "static/js/main.cda6e3ea.js"
+    "static/js/main.ce9a9000.js"
   ]
 }
