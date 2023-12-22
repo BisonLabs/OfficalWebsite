@@ -19,7 +19,7 @@ const Dashboard = () => {
     "STABLECOINS",
     "LENDING",
     "BRIDGES",
-    "DEX",
+    "DEXS",
     "DERIVATIVES",
     "GAMES",
     "DeFi",
