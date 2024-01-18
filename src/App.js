@@ -25,7 +25,7 @@ function App() {
           <Route path="/bitmap-bridge/bridiging" element={<SwapBridge />} />
           <Route path="/network-overview" element={<NetworkOverview />} />
           <Route path="/pipe-bridge" element={<PipeBridge />} /> */}
-          {/* <Route path="/claim" element={<LabbClaim />} /> */}
+          <Route path="/claim" element={<LabbClaim />} />
         </Routes>
         <Footer />
       </div>
