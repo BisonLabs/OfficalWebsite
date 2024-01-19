@@ -178,6 +178,11 @@ const LabbClaim = () => {
               Calling all approved Entrepreneurs! See how many free LABB tokens
               you are eligible to claim!
             </p>
+            <br />
+            <p>
+              Note: LABB is the token of Our partner Bitcoin Start Lab. Not
+              Bison token
+            </p>
             <div className="h-0 border-t-2 border-white my-5"></div>
             <p className="text-3x1">
               If you have not yet been approved please fill out our form to be

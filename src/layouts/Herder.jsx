@@ -40,17 +40,11 @@ const Header = () => {
   return (
     <div className="bg-white">
       <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
-        <span className="flex-wrap grid gap-3 lg:grid-cols-5 sm:grid-cols-1 items-center justify-center text-center mx-auto">
+        <span className="max-w-screen-lg flex-wrap grid gap-5 lg:grid-cols-5 sm:grid-cols-1 items-center justify-center text-center mx-auto">
           <span className="lg:col-span-1 text-xl font-bold">ANNOUNCEMENT</span>
           <span className="lg:col-span-3">
-            <p className="text-black">
               Our partner Bitcoin Start Labs' token LABB Claim Will Be Available
               January 19th, between 4-9 PM PST
-            </p>
-            <p className="text-black">
-              Note: LABB is the token of Our partner Bitcoin Start Lab. Not
-              Bison token
-            </p>
           </span>
           <span className="lg:col-span-1">
             <button
