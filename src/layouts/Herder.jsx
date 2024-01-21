@@ -39,7 +39,7 @@ const Header = () => {
 
   return (
     <div className="bg-white">
-      <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
+      {/* <div className="py-2 mx-auto bg-amber-500  w-full h-auto ">
         <span className="max-w-screen-lg flex-wrap grid gap-5 lg:grid-cols-5 sm:grid-cols-1 items-center justify-center text-center mx-auto">
           <span className="lg:col-span-1 text-xl font-bold">ANNOUNCEMENT</span>
           <span className="lg:col-span-3">
@@ -55,7 +55,7 @@ const Header = () => {
             </button>
           </span>
         </span>
-      </div>
+      </div> */}
 
       <header className="px-4 lg:px-12 py-4 bg-black w-full dark:border-amber-500">
         <nav
@@ -93,12 +93,12 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <button
+            {/* <button
               onClick={handleClickClaim}
               className="text-lg font-sans leading-6 text-white hover:text-amber-500 font-medium"
             >
               LABB Token Claim
-            </button>
+            </button> */}
           </div>
 
           {/* <div className="hidden lg:flex lg:justify-end ml-10">
