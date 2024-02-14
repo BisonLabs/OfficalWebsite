@@ -197,7 +197,7 @@ const Dashboard = () => {
       ],
       [
         "/img/menuImages/telegram-black.webp.png",
-        "https://t.me/+a5g-srOWtthkNGI5",
+        "https://t.me/+39ZLSJeSeMlkZjgx",
       ],
       // ["/img/menuImages/forum-black.webp.png", "/"],
       // ["/img/menuImages/reddit-black.webp.png", "/"],
