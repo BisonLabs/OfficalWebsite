@@ -130,7 +130,7 @@ const Footer = () => {
                 </button>
               </a>
               <div className="flex pt-6">
-                <a href="https://discord.com/Wr26ZV2fak">
+                <a href="https://discord.com/CzvRdZbMMA">
                   <img
                     src="/svg/discord_icon.svg"
                     alt="discord"
